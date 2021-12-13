@@ -24,6 +24,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.FlowLayout;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
 
 public class Login extends JFrame {
 
@@ -35,18 +37,18 @@ public class Login extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Login frame = new Login();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -88,7 +90,7 @@ public class Login extends JFrame {
 		Login_btn = new JButton("Login");
 		Login_btn.setBackground(new Color(255, 255, 255));
 		Login_btn.setForeground(new Color(0, 153, 255));
-		Login_btn.setFont(new Font("Anton", Font.PLAIN, 15));
+		Login_btn.setFont(new Font("Anton", Font.PLAIN, 20));
 		Login_btn.setBounds(90, 180, 120, 40);
 		Login_Panel.add(Login_btn);
 		
