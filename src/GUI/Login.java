@@ -54,6 +54,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setType(Type.POPUP);
 		setResizable(false);
 		setFont(new Font("Arial", Font.PLAIN, 13));
 		setTitle("Car Mananger");
