@@ -18,7 +18,7 @@ public class UserDAO {
 	
 	public int getNewIdFromTable(String tableName) throws SQLException{
 		int new_id = 1;
-		String query = "SELECT max(id)+1 FROM " + tableName;
+		String query = "SELECT max(account_id)+1 FROM " + tableName;
 		PreparedStatement stat = conn.prepareStatement(query);
 		ResultSet rs = stat.executeQuery();
 		if (rs.next()){
@@ -84,7 +84,7 @@ public class UserDAO {
 		stat.setString(1, username);
 		ResultSet result = stat.executeQuery();
 		if (result.next()){
-			return result.getString(1);
+			password = result.getString(1);
 		}
 		return password;
 	}
@@ -109,7 +109,7 @@ public class UserDAO {
 	
 //	public void displayPersonalForm(User user){
 //		PersonalForm pForm = new PersonalForm(user);
-//		pForm.getTxtUsername().setText(user.getUsername());
+//	pForm.getTxtUsername().setText(user.getUsername());
 //		pForm.getTxtEmail().setText(user.getEmail());
 //		pForm.getTxtName().setText(user.getName());
 //		pForm.setVisible(true);

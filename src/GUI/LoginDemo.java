@@ -95,7 +95,7 @@ public class LoginDemo extends JFrame implements ActionListener {
 						System.out.println("Login success.");
 						System.out.println("User id " + user_dao.getUserByUsername(userName).getId());
 						User current_user = user_dao.getUserByUsername(userName);
-//						user_dao.displayPersonalForm(current_user);
+						//user_dao.displayPersonalForm(current_user);
 						this.dispose();
 					}else
 						System.out.println("Invalid username or password.");
