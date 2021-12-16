@@ -6,21 +6,29 @@ public class HistoryCar {
 	private int history_id;
 	private String history_name;
 	private String history_model;
-	private Double history_add_price;
-	private Double history_export_price;
+	private double history_add_price;
+	private double history_export_price;
 	private LocalDate history_add_date = LocalDate.now();
 	private LocalDate history_export_date = LocalDate.now();
 	
 	public HistoryCar() {
 		
 	}
-	public HistoryCar(int history_id, String history_name, String history_model,Double history_add_price, Double history_export_price, LocalDate history_add_date) {
+	public HistoryCar(int history_id, String history_name, String history_model,double history_add_price, double history_export_price, LocalDate history_add_date) {
 		this.history_id = history_id;
 		this.history_name = history_name;
 		this.history_model = history_model;
 		this.history_add_price = history_add_price;
 		this.history_export_price = history_export_price;
 		this.history_add_date = history_add_date;
+	}
+	public HistoryCar(String history_name, String history_model, double history_add_price, double history_export_price, LocalDate history_add_date) {
+		this.history_name = history_name;
+		this.history_model = history_model;
+		this.history_add_price = history_add_price;
+		this.history_export_price = history_export_price;
+		this.history_add_date = history_add_date;
+		// TODO Auto-generated constructor stub
 	}
 	public int getHistory_id() {
 		return history_id;
@@ -40,13 +48,13 @@ public class HistoryCar {
 	public void setHistory_model(String history_model) {
 		this.history_model = history_model;
 	}
-	public Double getHistory_add_price() {
+	public double getHistory_add_price() {
 		return history_add_price;
 	}
 	public void setHistory_add_price(Double history_add_price) {
 		this.history_add_price = history_add_price;
 	}
-	public Double getHistory_export_price() {
+	public double getHistory_export_price() {
 		history_export_price = history_add_price + (history_add_price / 100 *20);
 		return history_export_price;
 	}
