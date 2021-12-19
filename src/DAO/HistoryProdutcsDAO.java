@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,5 +62,30 @@ public class HistoryProdutcsDAO {
 		else {
 			return false;
 		}
+	}
+	public ArrayList<HistoryCar> loadHistoryCarDataToList() throws SQLException{
+		String query = "SELECT * FROM car_history";
+		PreparedStatement stat = conn.prepareStatement(query);
+		ResultSet result = stat.executeQuery();
+		if(result.next() != false) {
+			int id;
+			String name, model;
+			Double add_price, export_price;
+			LocalDate add_date, export_date;
+			HistoryCar hCar;
+			historyCarList = new ArrayList<HistoryCar>();
+ 			do {
+				id = result.getInt(1);
+				name = result.getString(2);
+				model = result.getString(3);
+				add_price = result.getDouble(4);
+				export_price = result.getDouble(5);
+				add_date = LocalDate.parse(result.getString(6));
+				export_date = LocalDate.parse(result.getString(7));	
+				hCar = new HistoryCar(id, name, model, add_price,export_price, add_date,export_date);
+				historyCarList.add(hCar);
+			} while (result.next()!= false);
+		}
+		return historyCarList;
 	}
 }

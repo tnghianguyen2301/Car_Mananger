@@ -4,6 +4,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
+import DAO.CarHistoryModel;
 import DAO.CarProductsDAO;
 import DAO.CarProductsModel;
 import DAO.HistoryProdutcsDAO;
@@ -42,6 +43,9 @@ public class test extends JFrame implements ActionListener {
       myList_dao = new CarProductsDAO(conn);
       myList_dao.loadDataCarToList();
       hpDAO = new HistoryProdutcsDAO(conn);
+//      hpDAO.loadHistoryCarDataToList();
+     // tableModel = new CarProductsModel(myList_dao);
+      tableModel = new CarProductsModel(myList_dao);
       table = new JTable(tableModel);
       table.setAutoCreateRowSorter(true);
       JScrollPane scrollPane = new JScrollPane(table);
@@ -122,8 +126,9 @@ public class test extends JFrame implements ActionListener {
 				
 				HistoryCar historyCar = new HistoryCar(name,model,price,export_price,date);
 				myList_dao.createNewCarInTable(simpleCar);
+				//myList_dao.addNewCarToList(simpleCar);
 				hpDAO.createNewCarHistoryInTable(historyCar);
-				//tableModel.fireTableDataChanged();
+				tableModel.fireTableDataChanged();
 				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -133,26 +138,26 @@ public class test extends JFrame implements ActionListener {
       });
       
       //bt_delete
-//      bt_delete.addActionListener(new ActionListener(){
-//		@Override
-//		public void actionPerformed(ActionEvent arg0) {
-//			// TODO Auto-generated method stub
-//			int r = table.getSelectedRow();
-//			if (r != -1){
-//				int r_model = table.convertRowIndexToModel(r);
-//				int id = (int) tableModel.getValueAt(r_model, 0);
-//				try {
-//					myList_dao.deleteRowById(id);
-//					myList_dao.removeBookFromList(id);
-//					tableModel.fireTableDataChanged();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				
-//			}
-//		}
-//      });
+      bt_delete.addActionListener(new ActionListener(){
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			int r = table.getSelectedRow();
+			if (r != -1){
+				int r_model = table.convertRowIndexToModel(r);
+				int id = (int) tableModel.getValueAt(r_model, 0);
+				try {
+					myList_dao.deleteCarInTable(id);
+					hpDAO.updateHistoryInTable(id);
+					tableModel.fireTableDataChanged();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+      });
       
       //bt_update
 //      bt_update.addActionListener(new ActionListener(){
