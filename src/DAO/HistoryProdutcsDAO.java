@@ -26,6 +26,18 @@ public class HistoryProdutcsDAO {
 	public void addNewHistoryProducts(HistoryCar hsCar) {
 		historyCarList.add(hsCar);
 	}
+	public int getNewIDInHistoryTable() throws SQLException {
+		int new_id = 1;
+		String query = "SELECT max(history_id) + 1 FROM car_history";
+		PreparedStatement stat = conn.prepareStatement(query);
+		ResultSet result = stat.executeQuery();
+		if(result.next()) {
+			if(result.getInt(1) > 0) {
+				return result.getInt(1);
+			}
+		}
+		return new_id;
+	}
 	public boolean createNewCarHistoryInTable (HistoryCar hCar) throws SQLException {
 		String name = hCar.getHistory_name();
 		String model = hCar.getHistory_model();
@@ -81,9 +93,17 @@ public class HistoryProdutcsDAO {
 				add_price = result.getDouble(4);
 				export_price = result.getDouble(5);
 				add_date = LocalDate.parse(result.getString(6));
-				export_date = LocalDate.parse(result.getString(7));	
-				hCar = new HistoryCar(id, name, model, add_price,export_price, add_date,export_date);
-				historyCarList.add(hCar);
+				String dateTest = result.getString(7);
+				if(dateTest != null) {
+					export_date = LocalDate.parse(result.getString(7));
+					hCar = new HistoryCar(id, name, model, add_price,export_price, add_date,export_date);
+					historyCarList.add(hCar);		
+				}
+				else {
+					export_date = null;
+					hCar = new HistoryCar(id, name, model, add_price,export_price, add_date,export_date);
+					historyCarList.add(hCar);
+				}
 			} while (result.next()!= false);
 		}
 		return historyCarList;

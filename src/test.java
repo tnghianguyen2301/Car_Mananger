@@ -113,21 +113,22 @@ public class test extends JFrame implements ActionListener {
 			try {
 				SimpleCar sCar = new SimpleCar();
 				HistoryCar hCar = new HistoryCar();
-//				int id = myList_dao.getNewIdFromTable("simplebook");
-//				tf_id.setText(String.valueOf(id));
+				int products_id = myList_dao.getNewIDInTable();
+				int history_id =  hpDAO.getNewIDInHistoryTable();
 				String name = tf_title.getText();
 				String model = tf_author.getText();
 				double price = Double.parseDouble(tf_price.getText());
 				date = sCar.getProducts_add_date();
-				tf_date.setText(String.valueOf(date));
+				//tf_date.setText(String.valueOf(date));
 				double export_price = hCar.getHistory_export_price();
 				
-				SimpleCar simpleCar = new SimpleCar(name,model,price,date);
+				SimpleCar simpleCar = new SimpleCar(products_id,name,model,price,date);
 				
-				HistoryCar historyCar = new HistoryCar(name,model,price,export_price,date);
+				HistoryCar historyCar = new HistoryCar(history_id,name,model,price,export_price,date);
 				myList_dao.createNewCarInTable(simpleCar);
-				//myList_dao.addNewCarToList(simpleCar);
+				myList_dao.addNewCarToList(simpleCar);
 				hpDAO.createNewCarHistoryInTable(historyCar);
+				//hpDAO.addNewHistoryProducts(historyCar);
 				tableModel.fireTableDataChanged();
 				
 			} catch (SQLException e1) {
@@ -147,7 +148,7 @@ public class test extends JFrame implements ActionListener {
 				int r_model = table.convertRowIndexToModel(r);
 				int id = (int) tableModel.getValueAt(r_model, 0);
 				try {
-					myList_dao.deleteCarInTable(id);
+					//myList_dao.deleteCarInTable(id);
 					hpDAO.updateHistoryInTable(id);
 					tableModel.fireTableDataChanged();
 				} catch (SQLException e) {
@@ -204,53 +205,53 @@ public class test extends JFrame implements ActionListener {
 //		}
 //      });
       
-      table.addMouseListener(new MouseListener(){
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			int r = table.getSelectedRow();
-			int r_model = -1;
-			if (r != -1){
-				r_model = table.convertRowIndexToModel(r);
-			}
-			
-			int c = table.getSelectedColumn();
-			int c_model = -1;
-			if (c != -1){
-				c_model = table.convertColumnIndexToModel(c);
-			}
-			tf_id.setText(String.valueOf(tableModel.getValueAt(r_model, 0)));
-			tf_title.setText((String) tableModel.getValueAt(r_model, 1));
-			tf_author.setText((String) tableModel.getValueAt(r_model, 2));
-			tf_price.setText(String.valueOf(tableModel.getValueAt(r_model, 3)));
-			tf_date.setText(tableModel.getValueAt(r_model, 4).toString());
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+//      table.addMouseListener(new MouseListener(){
+//		@Override
+//		public void mouseClicked(MouseEvent e) {
+//			// TODO Auto-generated method stub
+//			int r = table.getSelectedRow();
+//			int r_model = -1;
+//			if (r != -1){
+//				r_model = table.convertRowIndexToModel(r);
+//			}
+//			
+//			int c = table.getSelectedColumn();
+//			int c_model = -1;
+//			if (c != -1){
+//				c_model = table.convertColumnIndexToModel(c);
+//			}
+//			tf_id.setText(String.valueOf(tableModel.getValueAt(r_model, 0)));
+//			tf_title.setText((String) tableModel.getValueAt(r_model, 1));
+//			tf_author.setText((String) tableModel.getValueAt(r_model, 2));
+//			tf_price.setText(String.valueOf(tableModel.getValueAt(r_model, 3)));
+//			tf_date.setText(tableModel.getValueAt(r_model, 4).toString());
+//		}
+//
+//		@Override
+//		public void mouseEntered(MouseEvent e) {
+//			// TODO Auto-generated method stub
+//			
+//		}
+//
+//		@Override
+//		public void mouseExited(MouseEvent e) {
+//			// TODO Auto-generated method stub
+//			
+//		}
+//
+//		@Override
+//		public void mousePressed(MouseEvent e) {
+//			// TODO Auto-generated method stub
+//			
+//		}
+//
+//		@Override
+//		public void mouseReleased(MouseEvent e) {
+//			// TODO Auto-generated method stub
+//			
+//		}
     	  
-      });
+ //     });
    }
    public void actionPerformed(ActionEvent ae) {
 

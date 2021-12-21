@@ -23,7 +23,8 @@ public class HistoryCar {
 		this.history_add_date = history_add_date;
 		this.history_export_date = history_export_date;
 	}
-	public HistoryCar(String history_name, String history_model, double history_add_price, double history_export_price, LocalDate history_add_date) {
+	public HistoryCar(int history_id,String history_name, String history_model, double history_add_price, double history_export_price, LocalDate history_add_date) {
+		this.history_id = history_id;
 		this.history_name = history_name;
 		this.history_model = history_model;
 		this.history_add_price = history_add_price;

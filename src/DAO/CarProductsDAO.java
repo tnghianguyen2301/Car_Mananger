@@ -24,6 +24,18 @@ public class CarProductsDAO {
 	public void addNewCarToList(SimpleCar sCar) {
 		carList.add(sCar);
 	}
+	public int getNewIDInTable() throws SQLException {
+		int new_id = 1; 
+		String query = "SELECT max(products_id) + 1 FROM car_products";
+		PreparedStatement stat = conn.prepareStatement(query);
+		ResultSet result = stat.executeQuery();
+		if(result.next()) {
+			if(result.getInt(1) > 0) {
+				return result.getInt(1);
+			}
+		}
+		return new_id;
+	}
 	public boolean createNewCarInTable(SimpleCar sCar) throws SQLException {
 		String name = sCar.getProducts_name();
 		String model = sCar.getProducts_model();
