@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import GUI.Main_Interface;
+
 public class GridBagLayOutDem extends JFrame {
 	JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
 	JPanel mainPanel, contentPanel;
@@ -108,6 +110,23 @@ public class GridBagLayOutDem extends JFrame {
 					e.printStackTrace();
 				}
 				btn2.getParent().repaint();
+			}			
+		});
+		btn3.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// Load panel1 vao vi tri cua contentPanel
+				//System.out.println("Button 2");
+				btn3.getParent().remove(contentPanel);
+				btn3.getParent().revalidate();
+				
+				c.fill = GridBagConstraints.BOTH;
+				c.gridx = 1;
+				c.gridy = 1;
+				c.gridheight = 5;
+				
+				btn3.getParent().add(new Main_Interface(),c);
+				btn3.getParent().repaint();
 			}			
 		});
 		this.add(contentPanel,c);

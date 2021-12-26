@@ -164,6 +164,7 @@ public class Main_Interface extends JFrame {
 		gbc_Filter_Color.gridx = 3;
 		gbc_Filter_Color.gridy = 1;
 		Bot_Pane.add(Filter_Color, gbc_Filter_Color);
+
 		
 		//Name
 		Filter_Name = new JTextField();
@@ -250,5 +251,6 @@ public class Main_Interface extends JFrame {
 		gbc_Manage_Btn.gridy = 0;
 		Top_Pane.add(Manage_Btn, gbc_Manage_Btn);
 	    this.setPreferredSize(new Dimension(800, 600));
+	    
 	}
 }
