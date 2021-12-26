@@ -80,7 +80,10 @@ DROP TABLE IF EXISTS `car_history`;
 CREATE TABLE `car_history` (
   `history_id` int NOT NULL AUTO_INCREMENT,
   `history_name` varchar(45) NOT NULL,
-  `history_model` varchar(45) NOT NULL,
+  `history_trademark` varchar(45) NOT NULL,
+  `history_type` varchar(45) NOT NULL,
+  `history_color` varchar(45) NOT NULL,
+  `history_status` varchar(45) NOT NULL,
   `history_add_price` decimal(5,2) NOT NULL,
   `history_export_price` decimal(5,2) NOT NULL,
   `history_add_date` varchar(45) NOT NULL,
@@ -95,7 +98,6 @@ CREATE TABLE `car_history` (
 
 LOCK TABLES `car_history` WRITE;
 /*!40000 ALTER TABLE `car_history` DISABLE KEYS */;
-INSERT INTO `car_history` VALUES (1,'yamaha1','yamaha',100.23,120.28,'2021-12-19','2021-12-19'),(2,'yamaha2','yamaha',100.23,120.28,'2021-12-19','2021-12-19'),(3,'yamaha3','yamaha',100.36,120.43,'2021-12-19','2021-12-20'),(4,'yamaha4','yamaha',100.23,120.28,'2021-12-20','2021-12-25'),(5,'yamaha5','yamaha',100.24,120.29,'2021-12-20','2021-12-20'),(6,'yamaha6','yamaha',100.23,120.28,'2021-12-20','2021-12-25'),(7,'yamaha7','yamaha',100.23,120.28,'2021-12-20','2021-12-25'),(8,'yamaha8','yamaha',100.23,120.28,'2021-12-21','2021-12-25'),(9,'yamaha9','yamaha',100.23,120.28,'2021-12-21','2021-12-25'),(10,'yamaha10','yamaha',100.23,120.28,'2021-12-22','2021-12-25'),(11,'yamaha11','yamaha',100.23,120.28,'2021-12-23','2021-12-25'),(12,'yamaha12','yamaha',100.23,120.28,'2021-12-24',NULL),(13,'yamaha13','yamaha',100.23,120.28,'2021-12-24',NULL),(14,'yamaha14','yamaha',100.23,120.28,'2021-12-25',NULL),(15,'yamaha15','yamaha',100.23,120.28,'2021-12-25',NULL),(16,'honda1','honda',100.23,120.28,'2021-12-25',NULL),(17,'honda2','honda',100.23,120.28,'2021-12-25',NULL),(18,'honda3','honda',100.23,120.28,'2021-12-25',NULL);
 /*!40000 ALTER TABLE `car_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,10 +111,13 @@ DROP TABLE IF EXISTS `car_products`;
 CREATE TABLE `car_products` (
   `products_id` int NOT NULL AUTO_INCREMENT,
   `products_name` varchar(45) NOT NULL,
-  `products_model` varchar(45) NOT NULL,
+  `products_trademark` varchar(45) NOT NULL,
+  `products_type` varchar(45) NOT NULL,
+  `products_color` varchar(45) NOT NULL,
+  `products_status` varchar(45) NOT NULL,
   `products_add_price` decimal(5,2) NOT NULL,
   `products_add_date` varchar(45) NOT NULL,
-  `products_status` varchar(45) NOT NULL,
+  `products_check` varchar(45) NOT NULL,
   PRIMARY KEY (`products_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -123,7 +128,6 @@ CREATE TABLE `car_products` (
 
 LOCK TABLES `car_products` WRITE;
 /*!40000 ALTER TABLE `car_products` DISABLE KEYS */;
-INSERT INTO `car_products` VALUES (4,'yamaha4','yamaha',100.23,'2021-12-20','Sold Out'),(5,'yamaha5','yamaha',100.24,'2021-12-20','Sold Out'),(6,'yamaha6','yamaha',100.23,'2021-12-20','Sold Out'),(7,'yamaha7','yamaha',100.23,'2021-12-20','Sold Out'),(8,'yamaha8','yamaha',100.23,'2021-12-21','Sold Out'),(9,'yamaha9','yamaha',100.23,'2021-12-21','Sold Out'),(10,'yamaha10','yamaha',100.23,'2021-12-22','Sold Out'),(11,'yamaha11','yamaha',100.23,'2021-12-24','Sold Out'),(12,'yamaha12','yamaha',100.23,'2021-12-24','Stocking'),(13,'yamaha13','yamaha',100.23,'2021-12-24','Stocking'),(14,'yamaha14','yamaha',100.23,'2021-12-25','Stocking'),(15,'yamaha15','yamaha',100.23,'2021-12-25','Stocking'),(16,'honda1','honda',100.23,'2021-12-25','Stocking'),(17,'honda2','honda',100.23,'2021-12-25','Stocking'),(18,'honda3','honda',100.23,'2021-12-25','Stocking');
 /*!40000 ALTER TABLE `car_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-26  9:29:54
+-- Dump completed on 2021-12-26 11:57:49
