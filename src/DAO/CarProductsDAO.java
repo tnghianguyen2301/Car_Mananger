@@ -41,18 +41,25 @@ public class CarProductsDAO {
 	}
 	public boolean createNewCarInTable(SimpleCar sCar) throws SQLException {
 		String name = sCar.getProducts_name();
-		String model = sCar.getProducts_model();
+		String trademark = sCar.getProducts_trademark();
+		String type = sCar.getProducts_type();
+		String color = sCar.getProducts_color();
+		String status = sCar.getProducts_status();
 		Double price = sCar.getProducts_add_price();
 		String date = sCar.getProducts_add_date().toString();
-		String status = sCar.getProducts_status();
-		String query = "INSERT INTO car_products (products_name, products_model, products_add_price, products_add_date, products_status)"
-				+ " VALUES (?,?,?,?,?)";
+		String check = sCar.getProducts_check();
+		String query = "INSERT INTO car_products (products_name, products_trademark, products_type, products_color, products_status,"
+				+ " products_add_price, products_add_date, products_check)"
+				+ " VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement stat = conn.prepareStatement(query);
 		stat.setString(1, name);
-		stat.setString(2, model);
-		stat.setDouble(3, price);
-		stat.setString(4, date);
+		stat.setString(2, trademark);
+		stat.setString(3, type);
+		stat.setString(4, color);
 		stat.setString(5, status);
+		stat.setDouble(6, price);
+		stat.setString(7, date);
+		stat.setString(8, check);
 		int p = stat.executeUpdate();
 		if(p == 1) {
 			return true;
@@ -76,7 +83,7 @@ public class CarProductsDAO {
 	public boolean updateStatus (int id) throws SQLException {
 		SimpleCar sc = new SimpleCar();
 		String upStatus = "Sold Out";
-		String query = "UPDATE car_products set products_status = ? WHERE products_id = ? ";
+		String query = "UPDATE car_products set products_check = ? WHERE products_id = ? ";
 		PreparedStatement stat = conn.prepareStatement(query);
 		stat.setString(1, upStatus);
 		stat.setInt(2, id);
@@ -100,7 +107,7 @@ public class CarProductsDAO {
 		ResultSet result = stat.executeQuery();
 		if(result.next() != false) {
 			int id;
-			String name, model, status;
+			String name, trademark, status, type, color, check;
 			Double price;
 			LocalDate date;
 			SimpleCar sCar;
@@ -108,11 +115,14 @@ public class CarProductsDAO {
 			do {
 				id = result.getInt(1);
 				name = result.getString(2);
-				model = result.getString(3);
-				price = result.getDouble(4);
-				date = LocalDate.parse(result.getString(5));
+				trademark = result.getString(3);
+				type = result.getString(4);
+				color = result.getString(5);
 				status = result.getString(6);
-				sCar = new SimpleCar(id, name, model, price, date, status);
+				price = result.getDouble(7);
+				date = LocalDate.parse(result.getString(8));
+				check = result.getString(9);
+				sCar = new SimpleCar(id, name, trademark, type, color, status, price, date, check);
 				carList.add(sCar);
 			}while(result.next() !=false);
 		}

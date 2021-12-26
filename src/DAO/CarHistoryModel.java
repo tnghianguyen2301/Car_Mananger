@@ -10,7 +10,7 @@ import org.w3c.dom.css.ElementCSSInlineStyle;
 import DTO.HistoryCar;
 
 public class CarHistoryModel extends AbstractTableModel {
-	private String[] columnName = {"ID","Name","Model","AddPirce","ExportPrice","AddDate","ExportDate"};
+	private String[] columnName = {"ID","Name","TradeMark","Type","Color","Status","AddPirce","ExportPrice","AddDate","ExportDate"};
 	private ArrayList<HistoryCar> historyListTbM;
 	public CarHistoryModel(HistoryProdutcsDAO hpDAO) {
 		historyListTbM = hpDAO.getHistoryCarList();
@@ -43,19 +43,28 @@ public class CarHistoryModel extends AbstractTableModel {
 			temp = historyListTbM.get(rowIndex).getHistory_name();
 		}
 		else if(columnIndex == 2) {
-			temp = historyListTbM.get(rowIndex).getHistory_model();
+			temp = historyListTbM.get(rowIndex).getHistory_trademark();
 		}
 		else if(columnIndex == 3) {
-			temp = new Double(historyListTbM.get(rowIndex).getHistory_add_price());
+			temp = historyListTbM.get(rowIndex).getHistory_type();
 		}
 		else if(columnIndex == 4) {
-			temp = new Double(historyListTbM.get(rowIndex).getHistory_export_price());
+			temp = historyListTbM.get(rowIndex).getHistory_color();
 		}
 		else if(columnIndex == 5) {
-			temp = historyListTbM.get(rowIndex).getHistory_add_date();
+			temp = historyListTbM.get(rowIndex).getHistory_status();
 		}
 		else if (columnIndex == 6) {
-			temp = historyListTbM.get(rowIndex).getHistory_export_Date();
+			temp = new Double(historyListTbM.get(rowIndex).getHistory_add_price());
+		}
+		else if(columnIndex == 7) {
+			temp = new Double(historyListTbM.get(rowIndex).getHistory_export_price());
+		}
+		else if(columnIndex == 8) {
+			temp = historyListTbM.get(rowIndex).getHistory_add_date();
+		}
+		else if(columnIndex == 9) {
+			temp = historyListTbM.get(rowIndex).getHistory_export_date();
 		}
 		return temp;
 	}
@@ -66,10 +75,10 @@ public class CarHistoryModel extends AbstractTableModel {
 		if(col == 0) {
 			return Integer.class;
 		}
-		if(col == 3 || col == 4) {
+		if(col == 6 || col == 7) {
 			return Double.class;
 		}
-		if(col == 5 || col ==6) {
+		if(col == 8 || col == 9) {
 			return LocalDate.class;
 		}
 		else {

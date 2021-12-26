@@ -37,7 +37,7 @@ public class ProductsPanel extends JPanel {
 		  DBConnection.init("database.properties");
 		  Connection conn = DBConnection.getConnection();
 		  cpDAO = new CarProductsDAO(conn);
-		  cpDAO.loadDataCarToList();
+		 // cpDAO.loadDataCarToList();
 		  hpDAO = new HistoryProdutcsDAO(conn);
 		 // hpDAO.loadHistoryCarDataToList();
 		  tableModel = new CarProductsModel(cpDAO);
@@ -161,12 +161,12 @@ public class ProductsPanel extends JPanel {
 	  				//tf_date.setText(String.valueOf(date));
 	  				double export_price = hCar.getHistory_export_price();
 	  				String status = sCar.getProducts_status();
-	  				SimpleCar simpleCar = new SimpleCar(products_id,name,model,price,date,status);
+	  				//SimpleCar simpleCar = new SimpleCar(products_id,name,model,price,date,status);
 	  				
-	  				HistoryCar historyCar = new HistoryCar(history_id,name,model,price,export_price,date);
-	  				cpDAO.createNewCarInTable(simpleCar);
-	  				cpDAO.addNewCarToList(simpleCar);
-	  				hpDAO.createNewCarHistoryInTable(historyCar);
+	  				//HistoryCar historyCar = new HistoryCar(history_id,name,model,price,export_price,date);
+	  				//cpDAO.createNewCarInTable(simpleCar);
+	  				//cpDAO.addNewCarToList(simpleCar);
+	  				//hpDAO.createNewCarHistoryInTable(historyCar);
 	  				//hpDAO.addNewHistoryProducts(historyCar);
 	  				tableModel.fireTableDataChanged();
 	  				

@@ -40,18 +40,25 @@ public class HistoryProdutcsDAO {
 	}
 	public boolean createNewCarHistoryInTable (HistoryCar hCar) throws SQLException {
 		String name = hCar.getHistory_name();
-		String model = hCar.getHistory_model();
+		String trademark = hCar.getHistory_trademark();
+		String type = hCar.getHistory_type();
+		String color = hCar.getHistory_color();
+		String status = hCar.getHistory_status();
 		Double add_price = hCar.getHistory_add_price();
 		Double export_price = hCar.getHistory_export_price();
 		String add_date = hCar.getHistory_add_date().toString();
-		String query = "INSERT INTO car_history (history_name, history_model, history_add_price, history_export_price, history_add_date )"
-				+ "VALUES (?,?,?,?,?)";
+		String query = "INSERT INTO car_history (history_name, history_trademark, history_type, history_color, history_status,"
+				+ " history_add_price, history_export_price, history_add_date )"
+				+ "VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement stat = conn.prepareStatement(query);
 		stat.setString(1, name);
-		stat.setString(2, model);
-		stat.setDouble(3, add_price);
-		stat.setDouble(4, export_price);
-		stat.setString(5,add_date);
+		stat.setString(2, trademark);
+		stat.setString(3, type);
+		stat.setString(4, color);
+		stat.setString(5, status);
+		stat.setDouble(6, add_price);
+		stat.setDouble(7, export_price);
+		stat.setString(8, add_date);
 		int p = stat.executeUpdate();
 		if(p == 1) {
 			return true;
@@ -64,7 +71,7 @@ public class HistoryProdutcsDAO {
 		String query = "UPDATE car_history set history_export_date = ? where history_id = ?";
 		PreparedStatement stat = conn.prepareStatement(query);
 		HistoryCar car = new HistoryCar();
-		String date = car.getHistory_export_Date().toString();
+		String date = car.getHistory_export_date().toString();
 		stat.setString(1, date);
 		stat.setInt(2, id);
 		int p = stat.executeUpdate();
@@ -81,7 +88,7 @@ public class HistoryProdutcsDAO {
 		ResultSet result = stat.executeQuery();
 		if(result.next() != false) {
 			int id;
-			String name, model;
+			String name, trademark,type,color,status;
 			Double add_price, export_price;
 			LocalDate add_date, export_date;
 			HistoryCar hCar;
@@ -89,19 +96,22 @@ public class HistoryProdutcsDAO {
  			do {
 				id = result.getInt(1);
 				name = result.getString(2);
-				model = result.getString(3);
-				add_price = result.getDouble(4);
-				export_price = result.getDouble(5);
-				add_date = LocalDate.parse(result.getString(6));
-				String dateTest = result.getString(7);
+				trademark = result.getString(3);
+				type = result.getString(4);
+				color = result.getString(5);
+				status = result.getString(6);
+				add_price = result.getDouble(7);
+				export_price = result.getDouble(8);
+				add_date = LocalDate.parse(result.getString(9));
+				String dateTest = result.getString(10);
 				if(dateTest != null) {
-					export_date = LocalDate.parse(result.getString(7));
-					hCar = new HistoryCar(id, name, model, add_price,export_price, add_date,export_date);
+					export_date = LocalDate.parse(result.getString(10));
+					hCar = new HistoryCar(id, name, trademark, type, color, status, add_price, export_price, add_date, export_date);
 					historyCarList.add(hCar);		
 				}
 				else {
 					export_date = null;
-					hCar = new HistoryCar(id, name, model, add_price,export_price, add_date,export_date);
+					hCar = new HistoryCar(id, name, trademark, type, color, status, add_price, export_price, add_date, export_date);
 					historyCarList.add(hCar);
 				}
 			} while (result.next()!= false);
