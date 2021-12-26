@@ -167,7 +167,7 @@ public class ProductsPanel extends JPanel {
 	  				cpDAO.createNewCarInTable(simpleCar);
 	  				cpDAO.addNewCarToList(simpleCar);
 	  				hpDAO.createNewCarHistoryInTable(historyCar);
-	  				//hpDAO.addNewHistoryProducts(historyCar);
+	  				hpDAO.addNewHistoryProducts(historyCar);
 	  				tableModel.fireTableDataChanged();
 	  				
 	  			} catch (SQLException e1) {
