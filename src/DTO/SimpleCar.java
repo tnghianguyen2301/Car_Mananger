@@ -9,6 +9,8 @@ public class SimpleCar {
 	private double products_add_price;
 	private double products_export_price;
 	private LocalDate products_add_date = LocalDate.now();
+	private String products_status = "Stocking";
+	
 	
 	public SimpleCar() {
 		
@@ -34,6 +36,15 @@ public class SimpleCar {
 		this.products_add_price = products_add_price;
 		this.products_export_price = products_export_price;
 		this.products_add_date = products_add_date;
+	}
+	public SimpleCar(int products_id, String products_name, String products_model, double products_add_price, LocalDate products_add_date, String products_status) {
+		this.products_id = products_id;
+		this.products_name = products_name;
+		this.products_model = products_model;
+		this.products_add_price = products_add_price;
+		this.products_add_date = products_add_date;
+		this.products_status = products_status;
+		
 	}
 	public int getProducts_id() {
 		return products_id;
@@ -71,5 +82,11 @@ public class SimpleCar {
 	}
 	public void setProducts_export_price(Double products_export_price) {
 		this.products_export_price = products_export_price;
+	}
+	public String getProducts_status() {
+		return products_status;
+	}
+	public void setProducts_status(String products_status) {
+		this.products_status = products_status;
 	}
 }

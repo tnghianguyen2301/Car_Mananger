@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import DTO.SimpleCar;
 
 public class CarProductsModel extends AbstractTableModel {
-	private String [] columnNames = {"ID","Name","Model","AddPrice","AddDate"};
+	private String [] columnNames = {"ID","Name","Model","AddPrice","AddDate","Status"};
 	private ArrayList<SimpleCar> carListTbM;
 	public CarProductsModel(CarProductsDAO cpDao) {
 		carListTbM = cpDao.getCarList();
@@ -48,7 +48,10 @@ public class CarProductsModel extends AbstractTableModel {
 			temp = new Double(carListTbM.get(rowIndex).getProducts_add_price());
 		}
 		if(columnIndex ==4) {
-			temp =carListTbM.get(rowIndex).getProducts_add_date();
+			temp = carListTbM.get(rowIndex).getProducts_add_date();
+		}
+		if (columnIndex == 5) {
+			temp = carListTbM.get(rowIndex).getProducts_status();
 		}
 		return temp;
 	}

@@ -121,9 +121,7 @@ public class test extends JFrame implements ActionListener {
 				date = sCar.getProducts_add_date();
 				//tf_date.setText(String.valueOf(date));
 				double export_price = hCar.getHistory_export_price();
-				
 				SimpleCar simpleCar = new SimpleCar(products_id,name,model,price,date);
-				
 				HistoryCar historyCar = new HistoryCar(history_id,name,model,price,export_price,date);
 				myList_dao.createNewCarInTable(simpleCar);
 				myList_dao.addNewCarToList(simpleCar);

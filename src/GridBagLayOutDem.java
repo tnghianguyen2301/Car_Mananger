@@ -18,7 +18,7 @@ public class GridBagLayOutDem extends JFrame {
 	JPanel mainJPanel = new JPanel();
 	LayoutManager layout;
 	GridBagConstraints c;
-	public GridBagLayOutDem() {
+	public GridBagLayOutDem() throws ClassNotFoundException, IOException, SQLException {
 		layout = new GridBagLayout();
 		c = new GridBagConstraints();
 		this.setLayout(layout);
@@ -81,9 +81,8 @@ public class GridBagLayOutDem extends JFrame {
 		c.gridy = 6;
 		btn8.setPreferredSize(new Dimension(800, 60));
 		this.add(btn8, c);
-		
-		contentPanel = new JPanel();
-		contentPanel.setBackground(Color.yellow);
+		ProductsPanel products = new ProductsPanel();
+		contentPanel = products;
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 1;
 		c.gridy = 1;
@@ -117,7 +116,7 @@ public class GridBagLayOutDem extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.pack();
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, IOException, SQLException {
 		// TODO Auto-generated method stub
 		new GridBagLayOutDem();
 	}
