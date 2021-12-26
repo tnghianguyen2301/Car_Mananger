@@ -38,9 +38,8 @@ public class ProductsPanel extends JPanel {
 		  DBConnection.init("database.properties");
 		  Connection conn = DBConnection.getConnection();
 		  cpDAO = new CarProductsDAO(conn);
-		 // cpDAO.loadDataCarToList();
+		  cpDAO.loadDataCarToList();
 		  hpDAO = new HistoryProdutcsDAO(conn);
-		 // hpDAO.loadHistoryCarDataToList();
 		  tableModel = new CarProductsModel(cpDAO);
 	      table = new JTable(tableModel);
 	      table = new JTable(tableModel);

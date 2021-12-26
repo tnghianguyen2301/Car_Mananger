@@ -8,6 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -16,8 +19,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import DAO.CarProductsDAO;
+import DAO.CarProductsModel;
+import DAO.HistoryProdutcsDAO;
+import Untilities.DBConnection;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,7 +38,10 @@ public class Application extends JFrame {
 	private JPanel Main_Interface;
 	private JTextField Filter_Name;
 	private JPanel Manage_Interface;
-
+	private CarProductsModel tableModel;
+	private JTable table;
+	private CarProductsDAO cpDAO;
+	private HistoryProdutcsDAO hpDAO;
 	/**
 	 * Launch the application.
 	 */
@@ -47,8 +60,11 @@ public class Application extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
 	 */
-	public Application() {
+	public Application() throws ClassNotFoundException, IOException, SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -254,12 +270,23 @@ public class Application extends JFrame {
 		
 		JPanel Main_Manage_Pane = new JPanel();
 		Manage_Interface.add(Main_Manage_Pane, BorderLayout.CENTER);
-		Main_Manage_Pane.setLayout(new BorderLayout(0, 0));
-		
+		Main_Manage_Pane.setLayout(null);
 		//Data Table
-		JScrollPane Manage_scrollPane = new JScrollPane();
-		scrollPane.setPreferredSize(new Dimension(800, 200));
-		Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
+		  DBConnection.init("database.properties");
+		  Connection conn = DBConnection.getConnection();
+		  cpDAO = new CarProductsDAO(conn);
+		  cpDAO.loadDataCarToList();
+		  hpDAO = new HistoryProdutcsDAO(conn);
+		  tableModel = new CarProductsModel(cpDAO);
+	      table = new JTable(tableModel);
+	      table = new JTable(tableModel);
+	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	      table.setAutoCreateRowSorter(true);
+	      JScrollPane scrollPane1 = new JScrollPane(table);
+	      scrollPane1.setBounds(150, 50, 1200, 300);
+	      scrollPane1.setPreferredSize(new Dimension(800, 200));
+	      this.setPreferredSize(new Dimension(800, 600));
+	      Main_Manage_Pane.add(scrollPane1, BorderLayout.CENTER);
 		
 		//Bot Pane
 		JPanel Bot_Manage_Pane = new JPanel();
