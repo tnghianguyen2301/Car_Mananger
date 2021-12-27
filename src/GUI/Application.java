@@ -148,7 +148,6 @@ public class Application extends JFrame implements ActionListener {
 		gbc_Filter_Status.gridx = 0;
 		gbc_Filter_Status.gridy = 1;
 		Bot_Pane.add(Filter_Status, gbc_Filter_Status);
-		
 		//Trademark
 		JComboBox Filter_Trademark = new JComboBox();
 		Filter_Trademark.setForeground(Color.BLACK);
@@ -351,7 +350,6 @@ public class Application extends JFrame implements ActionListener {
 				String color = Filter_Color.getSelectedItem().toString();
 				String trademark = Filter_Trademark.getSelectedItem().toString();
 				String name = Filter_Name.getText();
-				
 				String Query = "select * from car_products where ";
 				String[] S1 = {status, type, color, trademark, name};
 				String[] S2 = {"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
