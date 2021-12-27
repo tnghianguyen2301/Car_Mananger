@@ -73,7 +73,6 @@ public class Application extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		this.setContentPane(contentPane);
-		
 	/**
 	 * Main _Interface layout
 	 * Hien thi sua khi Login thanh cong
