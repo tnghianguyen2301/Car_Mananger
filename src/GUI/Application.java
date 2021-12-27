@@ -32,7 +32,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-public class Application extends JFrame {
+public class Application extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JPanel Main_Interface;
@@ -42,6 +42,7 @@ public class Application extends JFrame {
 	private JTable table;
 	private CarProductsDAO cpDAO;
 	private HistoryProdutcsDAO hpDAO;
+	private JButton Back_Main_Interface;
 	/**
 	 * Launch the application.
 	 */
@@ -71,6 +72,7 @@ public class Application extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
+		this.setContentPane(contentPane);
 		
 	/**
 	 * Main _Interface layout
@@ -173,7 +175,7 @@ public class Application extends JFrame {
 		
 		//Color
 		JComboBox Filter_Color = new JComboBox();
-		Filter_Color.setModel(new DefaultComboBoxModel(new String[] {"All", "White", "Black", "Gray", "Silver", "Blue", "Red", "Brown", "Yellow", "Green", "Others"}));
+		Filter_Color.setModel(new DefaultComboBoxModel(new String[] {"All", "White", "Black", "Gray", "Silver", "Blue", "Red", "Brown", "Yellow", "Green", "Others"}));	
 		Filter_Color.setForeground(Color.BLACK);
 		Filter_Color.setFont(new Font("Arial", Font.BOLD, 13));
 		GridBagConstraints gbc_Filter_Color = new GridBagConstraints();
@@ -266,6 +268,7 @@ public class Application extends JFrame {
 	    Manage_Interface = new JPanel();
 		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(Manage_Interface);
+		
 		Manage_Interface.setLayout(new BorderLayout(0, 0));
 		
 		JPanel Main_Manage_Pane = new JPanel();
@@ -328,9 +331,10 @@ public class Application extends JFrame {
 		Top_Manage_Pane.add(lblNewLabel, BorderLayout.WEST);
 		
 		//Back to Main Interface Button
-		JButton Back_Main_Interface = new JButton("Back");
+		Back_Main_Interface = new JButton("Back");
 		Top_Manage_Pane.add(Back_Main_Interface, BorderLayout.EAST);
 	    this.setPreferredSize(new Dimension(800, 600));
+	  
 		    
 		    
     /**
@@ -369,6 +373,13 @@ public class Application extends JFrame {
 				}
 			}
 		});
+	    Back_Main_Interface.addActionListener(this);
 	}
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		this.setContentPane(Main_Interface);
+		this.revalidate();
+	}
+	
 }
