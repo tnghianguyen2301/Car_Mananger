@@ -45,7 +45,7 @@ public class CarProductsDAO {
 		String type = sCar.getProducts_type();
 		String color = sCar.getProducts_color();
 		String status = sCar.getProducts_status();
-		Double price = sCar.getProducts_add_price();
+		Double price = sCar.getProducts_export_price();
 		String date = sCar.getProducts_add_date().toString();
 		String check = sCar.getProducts_check();
 		String query = "INSERT INTO car_products (products_name, products_trademark, products_type, products_color, products_status,"
@@ -97,7 +97,7 @@ public class CarProductsDAO {
 	public void updateCarInList(int id, String update) {
 		for(SimpleCar cars : carList) {
 			if(cars.getProducts_id() == id) {
-				cars.setProducts_status(update);
+				cars.setProducts_check(update);
 			}
 		}
 	}

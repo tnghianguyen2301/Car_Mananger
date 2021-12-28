@@ -77,26 +77,26 @@ public class ProductsPanel extends JPanel {
 	      add(tf_name);
 	      tf_name.setColumns(10);
 	      
-	      JLabel lblNewLabel_3 = new JLabel("Products Model");
-	      lblNewLabel_3.setBounds(10, 340, 97, 19);
+	      JLabel lblNewLabel_3 = new JLabel("Products TradeMark");
+	      lblNewLabel_3.setBounds(10, 328, 97, 19);
 	      add(lblNewLabel_3);
 	      
 	      JTextField tf_model = new JTextField();
-	      tf_model.setBounds(151, 337, 122, 26);
+	      tf_model.setBounds(151, 325, 122, 26);
 	      add(tf_model);
 	      tf_model.setColumns(10);
 	      
-	      JLabel lblNewLabel_4 = new JLabel("Products Price");
-	      lblNewLabel_4.setBounds(10, 388, 85, 18);
+	      JLabel lblNewLabel_4 = new JLabel("Products Type");
+	      lblNewLabel_4.setBounds(10, 364, 85, 18);
 	      add(lblNewLabel_4);
 	      
-	      JTextField tf_price = new JTextField();
-	      tf_price.setBounds(151, 385, 122, 26);
-	      add(tf_price);
-	      tf_price.setColumns(10);
+	      JTextField tf_type = new JTextField();
+	      tf_type.setBounds(151, 361, 122, 26);
+	      add(tf_type);
+	      tf_type.setColumns(10);
 	      
 	      JButton btn_add = new JButton("Add Products");
-	      btn_add.setBounds(50, 461, 132, 33);
+	      btn_add.setBounds(60, 542, 132, 33);
 	      add(btn_add);
 	      
 	      JLabel lblNewLabel_5 = new JLabel("Customer Information");
@@ -142,6 +142,33 @@ public class ProductsPanel extends JPanel {
 	      JButton btn_sell = new JButton("Sell");
 	      btn_sell.setBounds(524, 496, 97, 33);
 	      add(btn_sell);
+	      
+	      JLabel lblNewLabel_10 = new JLabel("Color");
+	      lblNewLabel_10.setBounds(10, 401, 66, 18);
+	      add(lblNewLabel_10);
+	      
+	      JTextField tf_color = new JTextField();
+	      tf_color.setBounds(146, 401, 132, 19);
+	      add(tf_color);
+	      tf_color.setColumns(10);
+	      
+	      JLabel lblNewLabel_11 = new JLabel("Status");
+	      lblNewLabel_11.setBounds(10, 441, 45, 13);
+	      add(lblNewLabel_11);
+	      
+	      JTextField tf_status = new JTextField();
+	      tf_status.setBounds(156, 434, 96, 19);
+	      add(tf_status);
+	      tf_status.setColumns(10);
+	      
+	      JLabel lblNewLabel_12 = new JLabel("Price");
+	      lblNewLabel_12.setBounds(10, 482, 45, 13);
+	      add(lblNewLabel_12);
+	      
+	      JTextField tf_price= new JTextField();
+	      tf_price.setBounds(156, 479, 96, 19);
+	      add(tf_price);
+	      tf_price.setColumns(10);
 	      btn_add.addActionListener(new ActionListener(){
 	  		@Override
 	  		public void actionPerformed(ActionEvent arg0) {
@@ -155,18 +182,22 @@ public class ProductsPanel extends JPanel {
 	  				int products_id = cpDAO.getNewIDInTable();
 	  				int history_id =  hpDAO.getNewIDInHistoryTable();
 	  				String name = tf_name.getText();
-	  				String model = tf_model.getText();
+	  				String trademark = tf_model.getText();
+	  				String type = tf_type.getText();
+	  				String color = tf_color.getText();
+	  				String status = tf_status.getText();
 	  				double price = Double.parseDouble(tf_price.getText());
 	  				date = sCar.getProducts_add_date();
 	  				//tf_date.setText(String.valueOf(date));
-	  				double export_price = hCar.getHistory_export_price();
-	  				String status = sCar.getProducts_status();
-	  				//SimpleCar simpleCar = new SimpleCar(products_id,name,model,price,date,status);
+	  				double p_export_price = price + (price / 100 * 20);
+	  				double h_export_price = hCar.getHistory_export_price();
+	  				String check = sCar.getProducts_check();
+	  				SimpleCar simpleCar = new SimpleCar(products_id, name, trademark, type, color, status, p_export_price, date, check);
 	  				
-	  				//HistoryCar historyCar = new HistoryCar(history_id,name,model,price,export_price,date);
-	  				//cpDAO.createNewCarInTable(simpleCar);
-	  				//cpDAO.addNewCarToList(simpleCar);
-	  				//hpDAO.createNewCarHistoryInTable(historyCar);
+	  				HistoryCar historyCar = new HistoryCar(history_id, name, trademark, type, color, status, price, h_export_price, date);
+	  				cpDAO.createNewCarInTable(simpleCar);
+	  				hpDAO.createNewCarHistoryInTable(historyCar);
+	  				cpDAO.addNewCarToList(simpleCar);
 	  				//hpDAO.addNewHistoryProducts(historyCar);
 	  				tableModel.fireTableDataChanged();
 	  				

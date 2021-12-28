@@ -9,7 +9,7 @@ public class SimpleCar {
 	private String products_type;
 	private String products_color;
 	private String products_status;
-	private double products_add_price;
+	private double products_export_price;
 	private LocalDate products_add_date = LocalDate.now();
 	private String products_check = "Stocking";
 	
@@ -18,7 +18,7 @@ public class SimpleCar {
 		
 	}
 	public SimpleCar(int products_id, String products_name, String products_trademark, String products_type, String products_color,
-			String products_status,double products_add_price, LocalDate products_add_date, String products_check) 
+			String products_status,double products_export_price, LocalDate products_add_date, String products_check) 
 	{
 		this.products_id = products_id;
 		this.products_name =  products_name;
@@ -26,7 +26,7 @@ public class SimpleCar {
 		this.products_type = products_type;
 		this.products_color = products_color;
 		this.products_status = products_status;
-		this.products_add_price = products_add_price;
+		this.products_export_price = products_export_price;
 		this.products_add_date = products_add_date;
 		this.products_check = products_check;
 	}
@@ -66,11 +66,11 @@ public class SimpleCar {
 	public void setProducts_status(String products_status) {
 		this.products_status = products_status;
 	}
-	public double getProducts_add_price() {
-		return products_add_price;
+	public double getProducts_export_price() {
+		return products_export_price;
 	}
-	public void setProducts_add_price(double products_add_price) {
-		this.products_add_price = products_add_price;
+	public void setProducts_export_price(double products_export_price) {
+		this.products_export_price = products_export_price;
 	}
 	public LocalDate getProducts_add_date() {
 		return products_add_date;

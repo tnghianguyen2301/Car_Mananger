@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -55,6 +57,7 @@ public class Application extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
+		this.setVisible(true);
 		
 	/**
 	 * Main _Interface layout
@@ -277,6 +280,21 @@ public class Application extends JFrame {
 				        }
 					}
 				}
+			}
+		});
+	    Manage_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new Manage();
+				} catch (ClassNotFoundException | IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(true);
+				dispose();
 			}
 		});
 	}
