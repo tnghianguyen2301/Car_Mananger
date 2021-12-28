@@ -8,9 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -19,30 +16,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import DAO.CarProductsDAO;
-import DAO.CarProductsModel;
-import DAO.HistoryProdutcsDAO;
-import Untilities.DBConnection;
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-public class Application extends JFrame implements ActionListener {
+public class Application extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel Main_Interface;
 	private JTextField Filter_Name;
 	private JPanel Manage_Interface;
-	private CarProductsModel tableModel;
-	private JTable table;
-	private CarProductsDAO cpDAO;
-	private HistoryProdutcsDAO hpDAO;
-	private JButton Back_Main_Interface;
+
 	/**
 	 * Launch the application.
 	 */
@@ -61,18 +47,15 @@ public class Application extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 * @throws SQLException 
 	 */
-	public Application() throws ClassNotFoundException, IOException, SQLException {
+	public Application() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-		this.setContentPane(contentPane);
+		
 	/**
 	 * Main _Interface layout
 	 * Hien thi sua khi Login thanh cong
@@ -147,6 +130,7 @@ public class Application extends JFrame implements ActionListener {
 		gbc_Filter_Status.gridx = 0;
 		gbc_Filter_Status.gridy = 1;
 		Bot_Pane.add(Filter_Status, gbc_Filter_Status);
+		
 		//Trademark
 		JComboBox Filter_Trademark = new JComboBox();
 		Filter_Trademark.setForeground(Color.BLACK);
@@ -173,7 +157,7 @@ public class Application extends JFrame implements ActionListener {
 		
 		//Color
 		JComboBox Filter_Color = new JComboBox();
-		Filter_Color.setModel(new DefaultComboBoxModel(new String[] {"All", "White", "Black", "Gray", "Silver", "Blue", "Red", "Brown", "Yellow", "Green", "Others"}));	
+		Filter_Color.setModel(new DefaultComboBoxModel(new String[] {"All", "White", "Black", "Gray", "Silver", "Blue", "Red", "Brown", "Yellow", "Green", "Others"}));
 		Filter_Color.setForeground(Color.BLACK);
 		Filter_Color.setFont(new Font("Arial", Font.BOLD, 13));
 		GridBagConstraints gbc_Filter_Color = new GridBagConstraints();
@@ -257,84 +241,8 @@ public class Application extends JFrame implements ActionListener {
 		gbc_Manage_Btn.gridy = 0;
 		Top_Pane.add(Manage_Btn, gbc_Manage_Btn);
 	    this.setPreferredSize(new Dimension(800, 600));
-		    
-		    
-    /**
-     * Manage layout
-     * Hien thi khi nhan Manage button trong Main Interface Layout
-     */
-	    Manage_Interface = new JPanel();
-		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(Manage_Interface);
-		
-		Manage_Interface.setLayout(new BorderLayout(0, 0));
-		
-		JPanel Main_Manage_Pane = new JPanel();
-		Manage_Interface.add(Main_Manage_Pane, BorderLayout.CENTER);
-		Main_Manage_Pane.setLayout(null);
-		//Data Table
-		  DBConnection.init("database.properties");
-		  Connection conn = DBConnection.getConnection();
-		  cpDAO = new CarProductsDAO(conn);
-		  cpDAO.loadDataCarToList();
-		  hpDAO = new HistoryProdutcsDAO(conn);
-		  tableModel = new CarProductsModel(cpDAO);
-	      table = new JTable(tableModel);
-	      table = new JTable(tableModel);
-	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
-	      table.setAutoCreateRowSorter(true);
-	      JScrollPane scrollPane1 = new JScrollPane(table);
-	      scrollPane1.setBounds(150, 50, 1200, 300);
-	      scrollPane1.setPreferredSize(new Dimension(800, 200));
-	      this.setPreferredSize(new Dimension(800, 600));
-	      Main_Manage_Pane.add(scrollPane1, BorderLayout.CENTER);
-		
-		//Bot Pane
-		JPanel Bot_Manage_Pane = new JPanel();
-		Manage_Interface.add(Bot_Manage_Pane, BorderLayout.SOUTH);
-		GridBagLayout gbl_Bot_Manage_Pane = new GridBagLayout();
-		gbl_Bot_Manage_Pane.columnWidths = new int[] {300, 300};
-		gbl_Bot_Manage_Pane.rowHeights = new int[] {40};
-		gbl_Bot_Manage_Pane.columnWeights = new double[]{0.0, 0.0};
-		gbl_Bot_Manage_Pane.rowWeights = new double[]{0.0};
-		Bot_Manage_Pane.setLayout(gbl_Bot_Manage_Pane);
-		
-		// Add Products Button
-		JButton Add_Pd_Btn = new JButton("Add Product");
-		Add_Pd_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Add_Pd_Btn = new GridBagConstraints();
-		gbc_Add_Pd_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Pd_Btn.insets = new Insets(5, 0, 5, 5);
-		gbc_Add_Pd_Btn.gridx = 0;
-		gbc_Add_Pd_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Add_Pd_Btn, gbc_Add_Pd_Btn);
-		
-		//Add Account Button
-		JButton Add_Acc_Btn = new JButton("Manage Account");
-		Add_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Add_Acc_Btn = new GridBagConstraints();
-		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Acc_Btn.gridx = 1;
-		gbc_Add_Acc_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Add_Acc_Btn, gbc_Add_Acc_Btn);
-		
-		//Top Pane
-		JPanel Top_Manage_Pane = new JPanel();
-		Manage_Interface.add(Top_Manage_Pane, BorderLayout.NORTH);
-		Top_Manage_Pane.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel = new JLabel("Transaction history");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 15));
-		Top_Manage_Pane.add(lblNewLabel, BorderLayout.WEST);
-		
-		//Back to Main Interface Button
-		Back_Main_Interface = new JButton("Back");
-		Top_Manage_Pane.add(Back_Main_Interface, BorderLayout.EAST);
-	    this.setPreferredSize(new Dimension(800, 600));
-	  
-		    
-		    
+	    
+	    
     /**
      * Apply Filter Button click even
      * Su ly khi nhan Apply filter
@@ -349,6 +257,7 @@ public class Application extends JFrame implements ActionListener {
 				String color = Filter_Color.getSelectedItem().toString();
 				String trademark = Filter_Trademark.getSelectedItem().toString();
 				String name = Filter_Name.getText();
+				
 				String Query = "select * from car_products where ";
 				String[] S1 = {status, type, color, trademark, name};
 				String[] S2 = {"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
@@ -370,13 +279,6 @@ public class Application extends JFrame implements ActionListener {
 				}
 			}
 		});
-	    Back_Main_Interface.addActionListener(this);
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		this.setContentPane(Main_Interface);
-		this.revalidate();
-	}
-	
+
 }
