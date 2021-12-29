@@ -9,6 +9,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
@@ -18,8 +19,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import DAO.CarProductsDAO;
+import DAO.CarProductsModel;
+import DAO.HistoryProdutcsDAO;
+import Untilities.DBConnection;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,6 +38,10 @@ public class Application extends JFrame {
 	private JPanel Main_Interface;
 	private JTextField Filter_Name;
 	private JPanel Manage_Interface;
+	private CarProductsModel tableModel;
+	private JTable table;
+	private CarProductsDAO cpDAO;
+	private HistoryProdutcsDAO hpDAO;
 
 	/**
 	 * Launch the application.
@@ -260,26 +272,38 @@ public class Application extends JFrame {
 				String color = Filter_Color.getSelectedItem().toString();
 				String trademark = Filter_Trademark.getSelectedItem().toString();
 				String name = Filter_Name.getText();
-				
-				String Query = "select * from car_products where ";
-				String[] S1 = {status, type, color, trademark, name};
-				String[] S2 = {"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
-				int Save = 0;
-				for (int i = 0; i < 6; i++) {
-					if (i < 4) {
-						if (S1[i] != "All") {
-							if(Save > 0) {Query = Query + " and "; Save--;};
-							Query = Query + S2[i] + S1[i];
-							Save++;
-				        }
-					} else if (i == 4){
-						if (S1[i] != null) {
-							if(Save > 0) {Query = Query + " and "; Save--;};
-							Query = Query + S2[i] + S1[i];
-							Save++;
-				        }
-					}
+				Main_Interface.add(Main_Pane, BorderLayout.CENTER);
+				Main_Pane.setLayout(null);
+				 try {
+					DBConnection.init("database.properties");
+				} catch (ClassNotFoundException | IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
 				}
+				  Connection conn = null;
+				try {
+					conn = DBConnection.getConnection();
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				  cpDAO = new CarProductsDAO(conn);
+				  try {
+					cpDAO.loadDataFilter(status, type, color, trademark, name);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				  //hpDAO = new HistoryProdutcsDAO(conn);
+				  tableModel = new CarProductsModel(cpDAO);
+			      table = new JTable(tableModel);
+			      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+			      table.setAutoCreateRowSorter(true);
+			      JScrollPane scrollPane = new JScrollPane(table);
+			      scrollPane.setBounds(300, 50, 800, 200);
+			      scrollPane.setPreferredSize(new Dimension(900, 200));
+			      Main_Pane.add(scrollPane, BorderLayout.CENTER);
+				
 			}
 		});
 	    Manage_Btn.addActionListener(new ActionListener() {

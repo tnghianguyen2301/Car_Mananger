@@ -128,4 +128,51 @@ public class CarProductsDAO {
 		}
 		return carList;
 	}
+	public ArrayList<SimpleCar> loadDataFilter(String status, String type, String color, String trademark, String name) throws SQLException{
+		String Query = "select * from car_products where ";
+		String[] S1 = {status, type, color, trademark, name};
+		String[] S2 = {"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
+		int Save = 0;
+		for (int i = 0; i < 6; i++) {
+			if (i < 4) {
+				if (S1[i] != " All ") {
+					if(Save > 0) {Query = Query + " and "; Save--;};
+					Query = Query + S2[i] + S1[i];
+					Save++;
+		        }
+			} else if (i == 4){
+				if (S1[i] != null) {
+					if(Save > 0) {Query = Query + " and "; Save--;};
+					Query = Query + S2[i] + S1[i];
+					Save++;
+		        }
+			}
+		}
+		PreparedStatement stat = conn.prepareStatement(Query);
+		ResultSet result = stat.executeQuery();
+		if(result.next() !=false) {
+			if(result.next() != false) {
+				int id;
+				String f_name, f_trademark, f_status, f_type, f_color, check;
+				Double price;
+				LocalDate date;
+				SimpleCar sCar;
+				carList = new ArrayList<SimpleCar>();
+				do {
+					id = result.getInt(1);
+					f_name = result.getString(2);
+					f_trademark = result.getString(3);
+					f_type = result.getString(4);
+					f_color = result.getString(5);
+					f_status = result.getString(6);
+					price = result.getDouble(7);
+					date = LocalDate.parse(result.getString(8));
+					check = result.getString(9);
+					sCar = new SimpleCar(id, f_name, f_trademark, f_type, f_color, f_status, price, date, check);
+					carList.add(sCar);
+				}while(result.next() !=false);
+			}
+		}
+		return carList;
+	}
 }

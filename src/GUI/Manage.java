@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import DAO.CarHistoryModel;
 import DAO.CarProductsDAO;
 import DAO.CarProductsModel;
 import DAO.HistoryProdutcsDAO;
@@ -29,7 +30,7 @@ import Untilities.DBConnection;
 public class Manage extends JFrame {
 
 	private JPanel Manage_Interface;
-	private CarProductsModel tableModel;
+	private CarHistoryModel tableModel;
 	private JTable table;
 	private CarProductsDAO cpDAO;
 	private HistoryProdutcsDAO hpDAO;
@@ -69,12 +70,13 @@ public class Manage extends JFrame {
 		Manage_Interface.add(Main_Manage_Pane, BorderLayout.CENTER);
 		Main_Manage_Pane.setLayout(null);
 		//Data Table
-		DBConnection.init("database.properties");
+		  DBConnection.init("database.properties");
 		  Connection conn = DBConnection.getConnection();
 		  cpDAO = new CarProductsDAO(conn);
 		  cpDAO.loadDataCarToList();
 		  hpDAO = new HistoryProdutcsDAO(conn);
-		  tableModel = new CarProductsModel(cpDAO);
+		  hpDAO.loadHistoryCarDataToList();
+		  tableModel = new CarHistoryModel(hpDAO);
 	      table = new JTable(tableModel);
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
