@@ -37,7 +37,6 @@ public class Application extends JFrame {
 	private JPanel contentPane;
 	private JPanel Main_Interface;
 	private JTextField Filter_Name;
-	private JPanel Manage_Interface;
 	private CarProductsModel tableModel;
 	private JTable table;
 	private CarProductsDAO cpDAO;

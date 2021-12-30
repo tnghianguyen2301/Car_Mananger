@@ -129,21 +129,21 @@ public class CarProductsDAO {
 		return carList;
 	}
 	public ArrayList<SimpleCar> loadDataFilter(String status, String type, String color, String trademark, String name) throws SQLException{
-		String Query = "select * from car_products where ";
+		String Query = "SELECT * FROM car_products WHERE ";
 		String[] S1 = {status, type, color, trademark, name};
-		String[] S2 = {"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
+		String[] S2 = {"products_status = \"", "products_type = \"", "products_color = \"", "products_trademark = \"", "products_name = \""};
 		int Save = 0;
 		for (int i = 0; i < 6; i++) {
 			if (i < 4) {
 				if (S1[i] != " All ") {
-					if(Save > 0) {Query = Query + " and "; Save--;};
-					Query = Query + S2[i] + S1[i];
+					if(Save > 0) {Query = Query + " AND "; Save--;};
+					Query = Query + S2[i] + S1[i] + "\"";
 					Save++;
 		        }
 			} else if (i == 4){
-				if (S1[i] != null) {
-					if(Save > 0) {Query = Query + " and "; Save--;};
-					Query = Query + S2[i] + S1[i];
+				if (S1[i] != "") {
+					if(Save > 0) {Query = Query + " AND "; Save--;};
+					Query = Query + S2[i] + S1[i] + "\"";
 					Save++;
 		        }
 			}
