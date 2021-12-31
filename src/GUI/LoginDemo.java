@@ -96,7 +96,7 @@ public class LoginDemo extends JFrame implements ActionListener {
 						System.out.println("User id " + user_dao.getUserByUsername(userName).getId());
 						User current_user = user_dao.getUserByUsername(userName);
 						//user_dao.displayPersonalForm(current_user);
-						new Application();
+						new Application(current_user);
 						setVisible(true);
 						this.dispose();
 					}else
