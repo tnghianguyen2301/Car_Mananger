@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -26,6 +27,7 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 
 import javax.swing.JPasswordField;
+import javax.swing.JComboBox;
 
 public class RegistrationFormValidation extends JFrame {
 	
@@ -34,6 +36,7 @@ public class RegistrationFormValidation extends JFrame {
 	private JPasswordField txtConfirmPassword;
 	private JTextField txtName;
 	private JTextField txtEmail;
+	private JComboBox txtRoll;
 
 	/**
 	 * Launch the application.
@@ -131,8 +134,17 @@ public class RegistrationFormValidation extends JFrame {
 				}
 			}
 		});
-		btnSave.setBounds(161, 227, 89, 23);
+		btnSave.setBounds(164, 252, 89, 23);
 		getContentPane().add(btnSave);		
+		
+		JLabel lblNewLabel = new JLabel("Roll");
+		lblNewLabel.setBounds(78, 200, 45, 14);
+		getContentPane().add(lblNewLabel);
+		
+		txtRoll = new JComboBox();
+		txtRoll.setModel(new DefaultComboBoxModel(new String[] {"Sale", "Manager"}));
+		txtRoll.setBounds(217, 202, 99, 21);
+		getContentPane().add(txtRoll);
 
 	}
 	
@@ -144,7 +156,7 @@ public class RegistrationFormValidation extends JFrame {
 		String strConfirmPassword = new String(txtConfirmPassword.getPassword());
 		String strName = txtName.getText();
 		String strEmail = txtEmail.getText();
-		
+		String strRoll = txtRoll.getSelectedItem().toString();
 		if(strUsername.equals("")) // Username
 		{
 			JOptionPane.showMessageDialog(null,
@@ -189,9 +201,14 @@ public class RegistrationFormValidation extends JFrame {
 			txtEmail.requestFocusInWindow(); 
 			return false;
 		}	
-		
+		if(strRoll.equals(" ")) {
+			JOptionPane.showMessageDialog(null,
+					"Please Input (Roll)");
+			txtEmail.requestFocusInWindow(); 
+			return false;
+		}
 		boolean status = false;
-		User new_user = new User(strUsername, strPassword, strEmail, strName);
+		User new_user = new User(strUsername, strPassword, strEmail, strName, strRoll);
 		try {
 			DBConnection.init("database.properties");
 			try {

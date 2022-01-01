@@ -7,5 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/DELL/eclipse-workspace/Car_Manager/lib/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DELL/eclipse-workspace/Car_Manager/lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DELL/eclipse-workspace/Car_Manager/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DELL/eclipse-workspace/Car_Manager/lib/jfreechart-1.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

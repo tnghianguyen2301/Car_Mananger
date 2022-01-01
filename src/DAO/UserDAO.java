@@ -30,8 +30,8 @@ public class UserDAO {
 		return new_id;			
 	}
 	
-	public User createUserObject(String username, String password, String name, String email){
-		User new_user = new User(username, password, name, email);
+	public User createUserObject(String username, String password, String name, String email, String role){
+		User new_user = new User(username, password, name, email,role);
 		return new_user;	
 	}
 	
@@ -42,7 +42,7 @@ public class UserDAO {
 		String hash_password = PBKDF2_Verify_Password.generateStrongPasswordHash(password);
 		String email = u.getEmail();
 		String name = u.getName();
-		int role = u.getRole();
+		String role = u.getRole();
 	
 		
 		String query = "INSERT INTO car_account VALUES (?, ?, ?, ?, ?, ?)";
@@ -52,7 +52,7 @@ public class UserDAO {
 			stat.setString(3, hash_password);
 			stat.setString(4, email);
 			stat.setString(5, name);
-			stat.setInt(6, role);
+			stat.setString(6, role);
 			// image
 			int p = stat.executeUpdate();
 			if (p == 1){
@@ -101,7 +101,7 @@ public class UserDAO {
 			String password = result.getString(3);
 			String email = result.getString(4);
 			String name = result.getString(5);
-			int role = result.getInt(6);
+			String role = result.getString(6);
 			current_user = new User(id, userName, password, email, name, role);
 		}
 		return current_user;	

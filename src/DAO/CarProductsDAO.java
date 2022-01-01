@@ -150,7 +150,6 @@ public class CarProductsDAO {
 		}
 		PreparedStatement stat = conn.prepareStatement(Query);
 		ResultSet result = stat.executeQuery();
-		if(result.next() !=false) {
 			if(result.next() != false) {
 				int id;
 				String f_name, f_trademark, f_status, f_type, f_color, check;
@@ -172,7 +171,6 @@ public class CarProductsDAO {
 					carList.add(sCar);
 				}while(result.next() !=false);
 			}
-		}
 		return carList;
 	}
 }

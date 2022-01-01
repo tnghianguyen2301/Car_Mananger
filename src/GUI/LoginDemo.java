@@ -68,7 +68,7 @@ public class LoginDemo extends JFrame implements ActionListener {
         setTitle("Please Login Here !");
         setSize(300, 100);
         setVisible(true);
-
+        setLocationRelativeTo(null);
     }
 
     public static void main(String[] args) {
