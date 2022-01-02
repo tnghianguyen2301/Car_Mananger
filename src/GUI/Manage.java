@@ -60,6 +60,7 @@ public class Manage extends JFrame {
 	 * @throws SQLException 
 	 */
 	public Manage() throws ClassNotFoundException, IOException, SQLException {
+		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		Manage_Interface = new JPanel();
