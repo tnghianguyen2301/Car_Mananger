@@ -88,10 +88,11 @@ public class Manage extends JFrame {
 	      scrollPane.setPreferredSize(new Dimension(900, 200));
 	      Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
 		
+	    //Bot Pane
 		JPanel Bot_Manage_Pane = new JPanel();
 		Manage_Interface.add(Bot_Manage_Pane, BorderLayout.SOUTH);
 		GridBagLayout gbl_Bot_Manage_Pane = new GridBagLayout();
-		gbl_Bot_Manage_Pane.columnWidths = new int[] {300, 300};
+		gbl_Bot_Manage_Pane.columnWidths = new int[] {150, 150, 150, 150, 150};
 		gbl_Bot_Manage_Pane.rowHeights = new int[] {40};
 		gbl_Bot_Manage_Pane.columnWeights = new double[]{0.0, 0.0};
 		gbl_Bot_Manage_Pane.rowWeights = new double[]{0.0};
@@ -115,6 +116,34 @@ public class Manage extends JFrame {
 		gbc_Add_Acc_Btn.gridy = 0;
 		Bot_Manage_Pane.add(Add_Acc_Btn, gbc_Add_Acc_Btn);
 		
+		JButton Man_Cus_Btn = new JButton("Manage Customer");
+		Man_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Man_Cus_Btn = new GridBagConstraints();
+		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Add_Acc_Btn.gridx = 2;
+		gbc_Add_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Man_Cus_Btn, gbc_Man_Cus_Btn);
+		
+		JButton Rep_Car_Btn = new JButton("Report Car Type");
+		Rep_Car_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Rep_Car_Btn = new GridBagConstraints();
+		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Add_Acc_Btn.gridx = 3;
+		gbc_Add_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Rep_Car_Btn, gbc_Rep_Car_Btn);
+		
+		JButton Rep_Tur_Btn = new JButton("Report Turnover");
+		Rep_Tur_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Rep_Tur_Btn = new GridBagConstraints();
+		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Add_Acc_Btn.gridx = 4;
+		gbc_Add_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
+		
+		//Top Pane
 		JPanel Top_Manage_Pane = new JPanel();
 		Manage_Interface.add(Top_Manage_Pane, BorderLayout.NORTH);
 		Top_Manage_Pane.setLayout(new BorderLayout(0, 0));
