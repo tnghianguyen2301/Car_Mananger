@@ -16,7 +16,10 @@ import javax.swing.JTable;
 import DAO.CarHistoryModel;
 import DAO.CarProductsDAO;
 import DAO.CarProductsModel;
+import DAO.CustomerDAO;
+import DAO.CustomerModel;
 import DAO.HistoryProdutcsDAO;
+import DTO.Customer;
 import DTO.HistoryCar;
 import DTO.SimpleCar;
 import Untilities.DBConnection;
@@ -29,10 +32,11 @@ import javax.swing.JFrame;
 
 public class ProductsPanel extends JPanel {
 
-	private CarProductsModel tableModel;
+	private CustomerModel tableModel;
 	private JTable table;
 	private CarProductsDAO cpDAO;
 	private HistoryProdutcsDAO hpDAO;
+	private CustomerDAO cDAO;
 	public ProductsPanel() throws ClassNotFoundException, IOException, SQLException {
 		  this.setLayout(null);
 		  DBConnection.init("database.properties");
@@ -40,7 +44,9 @@ public class ProductsPanel extends JPanel {
 		  cpDAO = new CarProductsDAO(conn);
 		  cpDAO.loadDataCarToList();
 		  hpDAO = new HistoryProdutcsDAO(conn);
-		  tableModel = new CarProductsModel(cpDAO);
+		  cDAO = new CustomerDAO(conn);
+		  cDAO.loadDataToList();
+		  tableModel = new CustomerModel(cDAO);
 	      table = new JTable(tableModel);
 	      table = new JTable(tableModel);
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
@@ -216,10 +222,17 @@ public class ProductsPanel extends JPanel {
 					int r_model = table.convertRowIndexToModel(r);
 					int id = (int) tableModel.getValueAt(r_model, 0);
 					try {
+						int c_id = cDAO.getNewIDInTableCustomer();
+						String name = c_name.getText();
+						LocalDate date = LocalDate.parse(c_date.getText());
+						String address = c_address.getText();
+						String phone = c_phone.getText();
 						hpDAO.updateHistoryInTable(id);
 						cpDAO.updateStatus(id);
 						cpDAO.updateCarInList(id, "Sold Out");
 						tableModel.fireTableDataChanged();
+						Customer cus = new Customer(c_id, name, date, address, phone, id);
+						cDAO.createNewCustomerInTable(cus);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -228,18 +241,18 @@ public class ProductsPanel extends JPanel {
 				
 			}
 		});
-	      btn_search.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				TableRowSorter<CarProductsModel> sorter = new TableRowSorter<CarProductsModel>(tableModel);
-				table.setRowSorter(sorter);
-				RowFilter<CarProductsModel, Object> filter = null;
-				filter = RowFilter.regexFilter(tf_search.getText(),2);
-				sorter.setRowFilter(filter);
-			}
-		});
+//	      btn_search.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				TableRowSorter<CarProductsModel> sorter = new TableRowSorter<CarProductsModel>(tableModel);
+//				table.setRowSorter(sorter);
+//				RowFilter<CarProductsModel, Object> filter = null;
+//				filter = RowFilter.regexFilter(tf_search.getText(),2);
+//				sorter.setRowFilter(filter);
+//			}
+//		});
 	}
 }
 
