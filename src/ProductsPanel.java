@@ -32,7 +32,7 @@ import javax.swing.JFrame;
 
 public class ProductsPanel extends JPanel {
 
-	private CustomerModel tableModel;
+	private CarProductsModel tableModel;
 	private JTable table;
 	private CarProductsDAO cpDAO;
 	private HistoryProdutcsDAO hpDAO;
@@ -46,7 +46,7 @@ public class ProductsPanel extends JPanel {
 		  hpDAO = new HistoryProdutcsDAO(conn);
 		  cDAO = new CustomerDAO(conn);
 		  cDAO.loadDataToList();
-		  tableModel = new CustomerModel(cDAO);
+		  tableModel = new CarProductsModel(cpDAO);
 	      table = new JTable(tableModel);
 	      table = new JTable(tableModel);
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
