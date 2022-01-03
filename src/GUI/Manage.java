@@ -204,7 +204,7 @@ public class Manage extends JFrame {
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(300, 50, 800, 200);
+	      scrollPane.setBounds(350, 50, 800, 200);
 	      scrollPane.setPreferredSize(new Dimension(900, 200));
 	      Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
 		
@@ -235,6 +235,32 @@ public class Manage extends JFrame {
 		gbc_Add_Acc_Btn.gridy = 0;
 		Bot_Manage_Pane.add(Add_Acc_Btn, gbc_Add_Acc_Btn);
 		
+		JButton Man_Cus_Btn = new JButton("Manage Customer");
+		Man_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Man_Cus_Btn = new GridBagConstraints();
+		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Add_Acc_Btn.gridx = 2;
+		gbc_Add_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Man_Cus_Btn, gbc_Man_Cus_Btn);
+		
+		JButton Rep_Car_Btn = new JButton("Report Car Type");
+		Rep_Car_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Rep_Car_Btn = new GridBagConstraints();
+		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Add_Acc_Btn.gridx = 3;
+		gbc_Add_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Rep_Car_Btn, gbc_Rep_Car_Btn);
+		
+		JButton Rep_Tur_Btn = new JButton("Report Turnover");
+		Rep_Tur_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Rep_Tur_Btn = new GridBagConstraints();
+		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Add_Acc_Btn.gridx = 4;
+		gbc_Add_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
 		JPanel Top_Manage_Pane = new JPanel();
 		Manage_Interface.add(Top_Manage_Pane, BorderLayout.NORTH);
 		Top_Manage_Pane.setLayout(new BorderLayout(0, 0));
@@ -258,6 +284,61 @@ public class Manage extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(true);
+				dispose();
+			}
+		});
+	    Add_Pd_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new Add_Product(Manage.this.user);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(true);
+				dispose();
+			}
+		});
+	    Rep_Car_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new BarChartEx(Manage.this.user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(true);
+				dispose();
+				
+			}
+		});
+	    Rep_Tur_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new LineChartEx(Manage.this.user);
+				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {

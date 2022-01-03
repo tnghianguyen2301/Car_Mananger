@@ -114,7 +114,7 @@ public class RegistrationFormValidation extends JFrame {
 		getContentPane().add(txtEmail);
 
 		// Save Button
-		JButton btnSave = new JButton("Save");
+		JButton btnSave = new JButton("Register");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -134,7 +134,7 @@ public class RegistrationFormValidation extends JFrame {
 				}
 			}
 		});
-		btnSave.setBounds(164, 252, 89, 23);
+		btnSave.setBounds(78, 251, 89, 23);
 		getContentPane().add(btnSave);		
 		
 		JLabel lblNewLabel = new JLabel("Roll");
@@ -145,6 +145,20 @@ public class RegistrationFormValidation extends JFrame {
 		txtRoll.setModel(new DefaultComboBoxModel(new String[] {"Sale", "Manager"}));
 		txtRoll.setBounds(217, 202, 99, 21);
 		getContentPane().add(txtRoll);
+		
+		JButton btnLogin = new JButton("Log In");
+		btnLogin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new LoginDemo();
+				setVisible(true);
+				dispose();
+			}
+		});
+		btnLogin.setBounds(263, 252, 85, 21);
+		getContentPane().add(btnLogin);
 
 	}
 	

@@ -8,6 +8,8 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.jdbc.JDBCCategoryDataset;
 
+import DTO.User;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -15,29 +17,41 @@ import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
 
 public class BarChartEx extends JFrame {
 	 private static JDBCCategoryDataset dataset;
+	 private User user;
+	 /**
+	  * @wbp.nonvisual location=419,54
+	  */
+    public BarChartEx(User user) throws SQLException {
 
-    public BarChartEx() throws SQLException {
-
-        initUI();
+        initUI(user);
     }
 
-    private void initUI() throws SQLException {
+    public BarChartEx() {
+		// TODO Auto-generated constructor stub
+	}
 
+	private void initUI(User user) throws SQLException {
+    	this.user = user;
         CategoryDataset dataset = createDataset();
-
         JFreeChart chart = createChart(dataset);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel.setBackground(Color.white);
-        add(chartPanel);
-
+        getContentPane().add(chartPanel, BorderLayout.NORTH);
+        getContentPane().setBounds(900, 50, 20, 20);
         pack();
         setTitle("Report Quantity Car Type Sell In Month");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     private CategoryDataset createDataset() throws SQLException {
@@ -73,12 +87,7 @@ public class BarChartEx extends JFrame {
         EventQueue.invokeLater(() -> {
 
         	BarChartEx ex = null;
-			try {
-				ex = new BarChartEx();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ex = new BarChartEx();
             ex.setVisible(true);
         });
     }
