@@ -37,10 +37,13 @@ import java.awt.Dimension;
 public class Application extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel Main_Interface;
 	private JTextField Filter_Name;
 	private CarProductsModel tableModel;
 	private JTable table;
+	private JTextField Cus_Name;
+	private JTextField Cus_Birth;
+	private JTextField Cus_Address;
+	private JTextField Cus_Phone;
 	private CarProductsDAO cpDAO;
 	private HistoryProdutcsDAO hpDAO;
 	private User user;
@@ -70,27 +73,15 @@ public class Application extends JFrame {
 	public Application() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Car Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 900, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new CardLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(0, 0));
 		this.setVisible(true);
 		setLocationRelativeTo(null);
 		
-	/**
-	 * Main _Interface layout
-	 * Hien thi sua khi Login thanh cong
-	 */
-		Main_Interface = new JPanel();
-		Main_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(Main_Interface);
-		Main_Interface.setLayout(new BorderLayout(0, 0));
-		
-		JPanel Main_Pane = new JPanel();
-		Main_Interface.add(Main_Pane, BorderLayout.CENTER);
 		//Data Table
-		Main_Pane.setLayout(null);
 		DBConnection.init("database.properties");
 		  Connection conn = DBConnection.getConnection();
 		  cpDAO = new CarProductsDAO(conn);
@@ -100,13 +91,13 @@ public class Application extends JFrame {
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(350, 50, 800, 200);
-	      scrollPane.setPreferredSize(new Dimension(900, 200));
-	      Main_Pane.add(scrollPane, BorderLayout.CENTER);
+	      scrollPane.setBounds(350, 50, 600, 400);
+	      scrollPane.setPreferredSize(new Dimension(600, 400));
+	      contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		//Bot Pane (Filter)
 		JPanel Bot_Pane = new JPanel();
-		Main_Interface.add(Bot_Pane, BorderLayout.SOUTH);
+		contentPane.add(Bot_Pane, BorderLayout.SOUTH);
 		GridBagLayout gbl_Bot_Pane = new GridBagLayout();
 		gbl_Bot_Pane.columnWidths = new int[] {120, 120, 120, 120, 180};
 		gbl_Bot_Pane.rowHeights = new int[] {20, 20, 20};
@@ -221,7 +212,7 @@ public class Application extends JFrame {
 		
 		//Top Pane (Info user)
 		JPanel Top_Pane = new JPanel();
-		Main_Interface.add(Top_Pane, BorderLayout.NORTH);
+		contentPane.add(Top_Pane, BorderLayout.NORTH);
 		GridBagLayout gbl_Top_Pane = new GridBagLayout();
 		gbl_Top_Pane.columnWidths = new int[] {50, 43, 70, 56, 100};
 		gbl_Top_Pane.rowHeights = new int[] {30, 0};
@@ -272,7 +263,132 @@ public class Application extends JFrame {
 		Top_Pane.add(Manage_Btn, gbc_Manage_Btn);
 	    this.setPreferredSize(new Dimension(800, 600));
 	    
+	  //Sale Pane
+	    JPanel Sale_Pane = new JPanel();
+	    contentPane.add(Sale_Pane, BorderLayout.EAST);
+	    GridBagLayout gbl_Sale_Pane = new GridBagLayout();
+	    gbl_Sale_Pane.columnWidths = new int[]{0, 0};
+	    gbl_Sale_Pane.rowHeights = new int[]{0, 0};
+	    gbl_Sale_Pane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+	    gbl_Sale_Pane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+	    Sale_Pane.setLayout(gbl_Sale_Pane);
 	    
+	    JPanel panel = new JPanel();
+	    GridBagConstraints gbc_panel = new GridBagConstraints();
+	    gbc_panel.insets = new Insets(0, 5, 5, 5);
+	    gbc_panel.fill = GridBagConstraints.BOTH;
+	    gbc_panel.gridx = 0;
+	    gbc_panel.gridy = 0;
+	    Sale_Pane.add(panel, gbc_panel);
+	    GridBagLayout gbl_panel = new GridBagLayout();
+	    gbl_panel.columnWidths = new int[] {80, 80};
+	    gbl_panel.rowHeights = new int[] {30, 20, 30, 20, 30, 20, 30, 20, 30, 30};
+	    gbl_panel.columnWeights = new double[]{0.0, 0.0};
+	    gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	    panel.setLayout(gbl_panel);
+	    
+	    JLabel lblNewLabel_1 = new JLabel("Customer Infomation:");
+	    lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+	    GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+	    gbc_lblNewLabel_1.fill = GridBagConstraints.VERTICAL;
+	    gbc_lblNewLabel_1.gridwidth = 2;
+	    gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+	    gbc_lblNewLabel_1.gridx = 0;
+	    gbc_lblNewLabel_1.gridy = 0;
+	    panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+	    
+	    JLabel lblNewLabel_2 = new JLabel("Customer Name:");
+	    GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+	    gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
+	    gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2.gridx = 0;
+	    gbc_lblNewLabel_2.gridy = 1;
+	    panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+	    
+	    Cus_Name = new JTextField();
+	    Cus_Name.setFont(new Font("Tahoma", Font.BOLD, 11));
+	    GridBagConstraints gbc_Cus_Name = new GridBagConstraints();
+	    gbc_Cus_Name.gridwidth = 2;
+	    gbc_Cus_Name.fill = GridBagConstraints.BOTH;
+	    gbc_Cus_Name.insets = new Insets(0, 0, 5, 0);
+	    gbc_Cus_Name.gridx = 0;
+	    gbc_Cus_Name.gridy = 2;
+	    panel.add(Cus_Name, gbc_Cus_Name);
+	    Cus_Name.setColumns(10);
+	    
+	    JLabel lblNewLabel_2_1 = new JLabel("Date of birth:");
+	    GridBagConstraints gbc_lblNewLabel_2_1 = new GridBagConstraints();
+	    gbc_lblNewLabel_2_1.anchor = GridBagConstraints.WEST;
+	    gbc_lblNewLabel_2_1.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2_1.gridx = 0;
+	    gbc_lblNewLabel_2_1.gridy = 3;
+	    panel.add(lblNewLabel_2_1, gbc_lblNewLabel_2_1);
+	    
+	    Cus_Birth = new JTextField();
+	    Cus_Birth.setFont(new Font("Tahoma", Font.BOLD, 11));
+	    Cus_Birth.setColumns(10);
+	    GridBagConstraints gbc_Cus_Birth = new GridBagConstraints();
+	    gbc_Cus_Birth.gridwidth = 2;
+	    gbc_Cus_Birth.fill = GridBagConstraints.BOTH;
+	    gbc_Cus_Birth.insets = new Insets(0, 0, 5, 0);
+	    gbc_Cus_Birth.gridx = 0;
+	    gbc_Cus_Birth.gridy = 4;
+	    panel.add(Cus_Birth, gbc_Cus_Birth);
+	    
+	    JLabel lblNewLabel_2_2 = new JLabel("Address:");
+	    GridBagConstraints gbc_lblNewLabel_2_2 = new GridBagConstraints();
+	    gbc_lblNewLabel_2_2.anchor = GridBagConstraints.WEST;
+	    gbc_lblNewLabel_2_2.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2_2.gridx = 0;
+	    gbc_lblNewLabel_2_2.gridy = 5;
+	    panel.add(lblNewLabel_2_2, gbc_lblNewLabel_2_2);
+	    
+	    Cus_Address = new JTextField();
+	    Cus_Address.setFont(new Font("Tahoma", Font.BOLD, 11));
+	    Cus_Address.setColumns(10);
+	    GridBagConstraints gbc_Cus_Address = new GridBagConstraints();
+	    gbc_Cus_Address.gridwidth = 2;
+	    gbc_Cus_Address.fill = GridBagConstraints.BOTH;
+	    gbc_Cus_Address.insets = new Insets(0, 0, 5, 0);
+	    gbc_Cus_Address.gridx = 0;
+	    gbc_Cus_Address.gridy = 6;
+	    panel.add(Cus_Address, gbc_Cus_Address);
+	    
+	    JLabel lblNewLabel_2_2_1 = new JLabel("Phone number:");
+	    GridBagConstraints gbc_lblNewLabel_2_2_1 = new GridBagConstraints();
+	    gbc_lblNewLabel_2_2_1.anchor = GridBagConstraints.WEST;
+	    gbc_lblNewLabel_2_2_1.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2_2_1.gridx = 0;
+	    gbc_lblNewLabel_2_2_1.gridy = 7;
+	    panel.add(lblNewLabel_2_2_1, gbc_lblNewLabel_2_2_1);
+	    
+	    Cus_Phone = new JTextField();
+	    Cus_Phone.setFont(new Font("Tahoma", Font.BOLD, 11));
+	    Cus_Phone.setColumns(10);
+	    GridBagConstraints gbc_Cus_Phone = new GridBagConstraints();
+	    gbc_Cus_Phone.gridwidth = 2;
+	    gbc_Cus_Phone.fill = GridBagConstraints.BOTH;
+	    gbc_Cus_Phone.insets = new Insets(0, 0, 5, 0);
+	    gbc_Cus_Phone.gridx = 0;
+	    gbc_Cus_Phone.gridy = 8;
+	    panel.add(Cus_Phone, gbc_Cus_Phone);
+	    
+	    JButton Save_Btn = new JButton("Save Info");
+	    GridBagConstraints gbc_Save_Btn = new GridBagConstraints();
+	    gbc_Save_Btn.anchor = GridBagConstraints.SOUTH;
+	    gbc_Save_Btn.fill = GridBagConstraints.HORIZONTAL;
+	    gbc_Save_Btn.insets = new Insets(0, 0, 0, 5);
+	    gbc_Save_Btn.gridx = 0;
+	    gbc_Save_Btn.gridy = 9;
+	    panel.add(Save_Btn, gbc_Save_Btn);
+	    
+	    JButton Sale_Btn = new JButton("Sale");
+	    GridBagConstraints gbc_Sale_Btn = new GridBagConstraints();
+	    gbc_Sale_Btn.anchor = GridBagConstraints.SOUTH;
+	    gbc_Sale_Btn.fill = GridBagConstraints.HORIZONTAL;
+	    gbc_Sale_Btn.gridx = 1;
+	    gbc_Sale_Btn.gridy = 9;
+	    panel.add(Sale_Btn, gbc_Sale_Btn);
     /**
      * Apply Filter Button click even
      * Su ly khi nhan Apply filter
@@ -287,8 +403,8 @@ public class Application extends JFrame {
 				String color = Filter_Color.getSelectedItem().toString();
 				String trademark = Filter_Trademark.getSelectedItem().toString();
 				String name = Filter_Name.getText();
-				Main_Interface.add(Main_Pane, BorderLayout.CENTER);
-				Main_Pane.setLayout(null);
+				scrollPane.add(scrollPane, BorderLayout.CENTER);
+				contentPane.setLayout(null);
 				try {
 					DBConnection.init("database.properties");
 				} catch (ClassNotFoundException | IOException e1) {
@@ -316,7 +432,7 @@ public class Application extends JFrame {
 			      JScrollPane scrollPane = new JScrollPane(table);
 			      scrollPane.setBounds(350, 50, 800, 200);
 			      scrollPane.setPreferredSize(new Dimension(900, 200));
-			      Main_Pane.add(scrollPane, BorderLayout.CENTER);
+			      contentPane.add(scrollPane, BorderLayout.CENTER);
 			}
 		});
 	    Manage_Btn.addActionListener(new ActionListener() {
@@ -348,13 +464,13 @@ public class Application extends JFrame {
 	 * Main _Interface layout
 	 * Hien thi sua khi Login thanh cong
 	 */
-		Main_Interface = new JPanel();
-		Main_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(Main_Interface);
-		Main_Interface.setLayout(new BorderLayout(0, 0));
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel Main_Pane = new JPanel();
-		Main_Interface.add(Main_Pane, BorderLayout.CENTER);
+		contentPane.add(Main_Pane, BorderLayout.CENTER);
 		Main_Pane.setLayout(null);
 		
 		//Data Table
@@ -373,7 +489,7 @@ public class Application extends JFrame {
 		
 		//Bot Pane (Filter)
 		JPanel Bot_Pane = new JPanel();
-		Main_Interface.add(Bot_Pane, BorderLayout.SOUTH);
+		contentPane.add(Bot_Pane, BorderLayout.SOUTH);
 		GridBagLayout gbl_Bot_Pane = new GridBagLayout();
 		gbl_Bot_Pane.columnWidths = new int[] {120, 120, 120, 120, 180};
 		gbl_Bot_Pane.rowHeights = new int[] {20, 20, 20};
@@ -488,7 +604,7 @@ public class Application extends JFrame {
 		
 		//Top Pane (Info user)
 		JPanel Top_Pane = new JPanel();
-		Main_Interface.add(Top_Pane, BorderLayout.NORTH);
+		contentPane.add(Top_Pane, BorderLayout.NORTH);
 		GridBagLayout gbl_Top_Pane = new GridBagLayout();
 		gbl_Top_Pane.columnWidths = new int[] {50, 43, 70, 56, 100};
 		gbl_Top_Pane.rowHeights = new int[] {30, 0};
@@ -560,7 +676,7 @@ public class Application extends JFrame {
 				String color = Filter_Color.getSelectedItem().toString();
 				String trademark = Filter_Trademark.getSelectedItem().toString();
 				String name = Filter_Name.getText();
-				Main_Interface.add(Main_Pane, BorderLayout.CENTER);
+				contentPane.add(Main_Pane, BorderLayout.CENTER);
 				Main_Pane.setLayout(null);
 				try {
 					DBConnection.init("database.properties");
