@@ -62,7 +62,7 @@ public class Manage extends JFrame {
 	public Manage() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 400);
 		Manage_Interface = new JPanel();
 		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Manage_Interface.setLayout(new BorderLayout(0, 0));
@@ -84,8 +84,8 @@ public class Manage extends JFrame {
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(300, 50, 800, 200);
-	      scrollPane.setPreferredSize(new Dimension(900, 200));
+	      scrollPane.setBounds(300, 50, 750, 350);
+	      scrollPane.setPreferredSize(new Dimension(600, 350));
 	      Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
 		
 	    //Bot Pane
@@ -226,40 +226,40 @@ public class Manage extends JFrame {
 		gbc_Add_Pd_Btn.gridy = 0;
 		Bot_Manage_Pane.add(Add_Pd_Btn, gbc_Add_Pd_Btn);
 		
-		JButton Add_Acc_Btn = new JButton("Manage Account");
-		Add_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Add_Acc_Btn = new GridBagConstraints();
-		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Acc_Btn.gridx = 1;
-		gbc_Add_Acc_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Add_Acc_Btn, gbc_Add_Acc_Btn);
+		JButton Man_Acc_Btn = new JButton("Manage Account");
+		Man_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_Man_Acc_Btn = new GridBagConstraints();
+		gbc_Man_Acc_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Man_Acc_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Man_Acc_Btn.gridx = 1;
+		gbc_Man_Acc_Btn.gridy = 0;
+		Bot_Manage_Pane.add(Man_Acc_Btn, gbc_Man_Acc_Btn);
 		
 		JButton Man_Cus_Btn = new JButton("Manage Customer");
 		Man_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_Man_Cus_Btn = new GridBagConstraints();
-		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Acc_Btn.gridx = 2;
-		gbc_Add_Acc_Btn.gridy = 0;
+		gbc_Man_Cus_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Man_Cus_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Man_Cus_Btn.gridx = 2;
+		gbc_Man_Cus_Btn.gridy = 0;
 		Bot_Manage_Pane.add(Man_Cus_Btn, gbc_Man_Cus_Btn);
 		
 		JButton Rep_Car_Btn = new JButton("Report Car Type");
 		Rep_Car_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_Rep_Car_Btn = new GridBagConstraints();
-		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Acc_Btn.gridx = 3;
-		gbc_Add_Acc_Btn.gridy = 0;
+		gbc_Rep_Car_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Rep_Car_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Rep_Car_Btn.gridx = 3;
+		gbc_Rep_Car_Btn.gridy = 0;
 		Bot_Manage_Pane.add(Rep_Car_Btn, gbc_Rep_Car_Btn);
 		
 		JButton Rep_Tur_Btn = new JButton("Report Turnover");
 		Rep_Tur_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_Rep_Tur_Btn = new GridBagConstraints();
-		gbc_Add_Acc_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Acc_Btn.gridx = 4;
-		gbc_Add_Acc_Btn.gridy = 0;
+		gbc_Rep_Tur_Btn.insets = new Insets(5, 5, 5, 0);
+		gbc_Rep_Tur_Btn.fill = GridBagConstraints.BOTH;
+		gbc_Rep_Tur_Btn.gridx = 4;
+		gbc_Rep_Tur_Btn.gridy = 0;
 		Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
 		JPanel Top_Manage_Pane = new JPanel();
 		Manage_Interface.add(Top_Manage_Pane, BorderLayout.NORTH);
