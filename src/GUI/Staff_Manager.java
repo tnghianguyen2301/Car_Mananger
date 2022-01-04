@@ -51,7 +51,7 @@ public class Staff_Manager extends JFrame {
 		
 		//Data Table
 		JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(350, 50, 800, 200);
+	    scrollPane.setBounds(350, 50, 600, 350);
 	    scrollPane.setPreferredSize(new Dimension(600, 350));
 	    contentPane.add(scrollPane, BorderLayout.CENTER);
 		
