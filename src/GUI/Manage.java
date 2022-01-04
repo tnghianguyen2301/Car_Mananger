@@ -84,8 +84,8 @@ public class Manage extends JFrame {
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(300, 50, 750, 350);
-	      scrollPane.setPreferredSize(new Dimension(600, 350));
+	      scrollPane.setBounds(0, 0, 600, 300);
+	      scrollPane.setPreferredSize(new Dimension(600, 300));
 	      Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
 		
 	    //Bot Pane
