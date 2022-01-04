@@ -192,7 +192,7 @@ public class Application extends JFrame {
 		Filter_Name = new JTextField();
 		Filter_Name.setFont(new Font("Arial", Font.BOLD, 13));
 		GridBagConstraints gbc_Filter_Name = new GridBagConstraints();
-		gbc_Filter_Name.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Filter_Name.fill = GridBagConstraints.BOTH;
 		gbc_Filter_Name.insets = new Insets(0, 0, 5, 5);
 		gbc_Filter_Name.gridx = 4;
 		gbc_Filter_Name.gridy = 1;
