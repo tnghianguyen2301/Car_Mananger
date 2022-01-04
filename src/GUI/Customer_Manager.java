@@ -10,12 +10,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import DAO.CarHistoryModel;
+import DAO.CarProductsDAO;
+import DAO.CustomerDAO;
+import DAO.CustomerModel;
+import DAO.HistoryProdutcsDAO;
+import Untilities.DBConnection;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.Font;
 
 public class Customer_Manager extends JFrame {
@@ -26,7 +39,8 @@ public class Customer_Manager extends JFrame {
 	private JTextField Cus_Birth;
 	private JTextField Cus_Address;
 	private JTextField Cus_Phone;
-
+	private CustomerModel tableModel;
+	private CustomerDAO cDAO;
 	/**
 	 * Launch the application.
 	 */
@@ -45,8 +59,11 @@ public class Customer_Manager extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
 	 */
-	public Customer_Manager() {
+	public Customer_Manager() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Customer Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 350);
@@ -56,6 +73,14 @@ public class Customer_Manager extends JFrame {
 		setContentPane(contentPane);
 		
 		//Data Table
+		DBConnection.init("database.properties");
+		Connection conn = DBConnection.getConnection();
+		cDAO = new CustomerDAO(conn);
+		cDAO.loadDataToList();
+		tableModel = new CustomerModel(cDAO);
+	    table = new JTable(tableModel);
+	    table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(350, 50, 600, 350);
 	    scrollPane.setPreferredSize(new Dimension(600, 350));
@@ -191,6 +216,52 @@ public class Customer_Manager extends JFrame {
 	    gbc_Cus_Phone.gridx = 0;
 	    gbc_Cus_Phone.gridy = 8;
 	    panel.add(Cus_Phone, gbc_Cus_Phone);
+	    table.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int r = table.getSelectedRow();
+				int r_model = -1;
+				if (r != -1){
+					r_model = table.convertRowIndexToModel(r);
+				}
+				
+				int c = table.getSelectedColumn();
+				int c_model = -1;
+				if (c != -1){
+					c_model = table.convertColumnIndexToModel(c);
+				}
+				Cus_Name.setText((String) tableModel.getValueAt(r_model, 1));
+				Cus_Birth.setText(tableModel.getValueAt(r_model, 2).toString());
+				Cus_Address.setText((String) tableModel.getValueAt(r_model, 3));
+				Cus_Phone.setText((String) tableModel.getValueAt(r_model, 4));
+			}
+		});
 	}
 
 }
