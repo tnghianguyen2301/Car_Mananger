@@ -66,7 +66,7 @@ public class Customer_Manager extends JFrame {
 	public Customer_Manager() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Customer Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 350);
+		setBounds(100, 100, 970, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -82,8 +82,8 @@ public class Customer_Manager extends JFrame {
 	    table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(350, 50, 600, 350);
-	    scrollPane.setPreferredSize(new Dimension(600, 350));
+	    scrollPane.setBounds(0, 0, 800, 400);
+	    scrollPane.setPreferredSize(new Dimension(800, 400));
 	    contentPane.add(scrollPane, BorderLayout.CENTER);
 	    
 	    //Top Pane

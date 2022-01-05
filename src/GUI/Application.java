@@ -73,7 +73,7 @@ public class Application extends JFrame {
 	public Application() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Car Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 450);
+		setBounds(100, 100, 970, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -91,8 +91,8 @@ public class Application extends JFrame {
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(350, 50, 600, 400);
-	      scrollPane.setPreferredSize(new Dimension(600, 400));
+	      scrollPane.setBounds(0, 0, 800, 400);
+	      scrollPane.setPreferredSize(new Dimension(800, 400));
 	      contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		//Bot Pane (Filter)
@@ -190,9 +190,9 @@ public class Application extends JFrame {
 		
 		//Name
 		Filter_Name = new JTextField();
-		Filter_Name.setFont(new Font("Arial", Font.BOLD, 13));
+		Filter_Name.setFont(new Font("Arial", Font.BOLD, 15));
 		GridBagConstraints gbc_Filter_Name = new GridBagConstraints();
-		gbc_Filter_Name.fill = GridBagConstraints.BOTH;
+		gbc_Filter_Name.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Filter_Name.insets = new Insets(0, 0, 5, 5);
 		gbc_Filter_Name.gridx = 4;
 		gbc_Filter_Name.gridy = 1;
