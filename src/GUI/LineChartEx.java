@@ -1,5 +1,12 @@
 package GUI;
 import java.sql.*;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import org.jfree.ui.*;
 
@@ -24,13 +31,33 @@ public class LineChartEx {
 		JFreeChart chart = ChartFactory.createLineChart("Report Turnover", "Month", "Turnover",
 				dataset, PlotOrientation.VERTICAL, true, true, false);
 		ChartPanel chartPanel = new ChartPanel(chart);
+		JPanel panel = new JPanel();
+		JButton back_Main = new JButton("Back");
 		chartPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 		ApplicationFrame f = new ApplicationFrame("Chart");
-		f.setContentPane(chartPanel);
+		panel.add(chartPanel);
+		panel.add(back_Main);
+		panel.setBackground(Color.WHITE);
+		f.setContentPane(panel);
 		f.pack();
 		f.setVisible(true);
 		f.setTitle("Report Turnover");
 		f.setLocationRelativeTo(null);
+		back_Main.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new Manage(user);
+				} catch (ClassNotFoundException | IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				f.setVisible(true);
+				f.dispose();
+			}
+		});
 	}
 
 	public static void main(String[] args) throws Exception {

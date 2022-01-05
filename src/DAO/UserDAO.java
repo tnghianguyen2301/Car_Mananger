@@ -50,8 +50,8 @@ public class UserDAO {
 			stat.setInt(1, id);
 			stat.setString(2, username);
 			stat.setString(3, hash_password);
-			stat.setString(4, email);
-			stat.setString(5, name);
+			stat.setString(4, name);
+			stat.setString(5, email);
 			stat.setString(6, role);
 			// image
 			int p = stat.executeUpdate();

@@ -148,6 +148,7 @@ public class CarProductsDAO {
 		        }
 			}
 		}
+		
 		PreparedStatement stat = conn.prepareStatement(Query);
 		ResultSet result = stat.executeQuery();
 			if(result.next() != false) {

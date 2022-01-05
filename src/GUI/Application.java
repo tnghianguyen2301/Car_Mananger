@@ -398,7 +398,6 @@ public class Application extends JFrame {
      * Su ly khi nhan Apply filter
      */
 	    Apply_Btn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
