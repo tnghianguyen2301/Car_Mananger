@@ -129,9 +129,9 @@ public class CarProductsDAO {
 		return carList;
 	}
 	public ArrayList<SimpleCar> loadDataFilter(String status, String type, String color, String trademark, String name) throws SQLException{
-		String Query = "\"SELECT * FROM car_products WHERE ";
+		String Query = "SELECT * FROM car_products WHERE ";
 		String[] S1 = {status, type, color, trademark, name};
-		String[] S2 = {"\"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
+		String[] S2 = {"products_status = ", "products_type = ", "products_color = ", "products_trademark = ", "products_name = "};
 		int Save = 0;
 		for (int i = 0; i < 6; i++) {
 			if (i < 4) {
@@ -143,10 +143,9 @@ public class CarProductsDAO {
 			} else if (i == 4){
 				if (S1[i] != "") {
 					if(Save > 0) {Query = Query + " AND "; Save--;};
-					Query = Query + S2[i] + S1[i] + "\"";
+					Query = Query + S2[i] + S1[i];
 					Save++;
 		        }
-				else {Query = Query + "\"";}
 			}
 		}
 		PreparedStatement stat = conn.prepareStatement(Query);
