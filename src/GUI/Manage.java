@@ -62,7 +62,7 @@ public class Manage extends JFrame {
 	public Manage() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 810, 400);
+		setBounds(100, 100, 825, 510);
 		Manage_Interface = new JPanel();
 		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Manage_Interface.setLayout(new BorderLayout(0, 0));
