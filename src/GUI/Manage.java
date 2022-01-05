@@ -180,8 +180,9 @@ public class Manage extends JFrame {
 	}
 
 	public Manage(User user) throws ClassNotFoundException, IOException, SQLException {
+		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 825, 510);
 		Manage_Interface = new JPanel();
 		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Manage_Interface.setLayout(new BorderLayout(0, 0));
@@ -192,6 +193,7 @@ public class Manage extends JFrame {
 		JPanel Main_Manage_Pane = new JPanel();
 		Manage_Interface.add(Main_Manage_Pane, BorderLayout.CENTER);
 		Main_Manage_Pane.setLayout(null);
+		
 		//Data Table
 		  DBConnection.init("database.properties");
 		  Connection conn = DBConnection.getConnection();
@@ -204,63 +206,65 @@ public class Manage extends JFrame {
 	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(350, 50, 800, 200);
-	      scrollPane.setPreferredSize(new Dimension(900, 200));
+	      scrollPane.setBounds(0, 0, 800, 400);
+	      scrollPane.setPreferredSize(new Dimension(800, 400));
 	      Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
 		
-		JPanel Bot_Manage_Pane = new JPanel();
-		Manage_Interface.add(Bot_Manage_Pane, BorderLayout.SOUTH);
-		GridBagLayout gbl_Bot_Manage_Pane = new GridBagLayout();
-		gbl_Bot_Manage_Pane.columnWidths = new int[] {300, 300};
-		gbl_Bot_Manage_Pane.rowHeights = new int[] {40};
-		gbl_Bot_Manage_Pane.columnWeights = new double[]{0.0, 0.0};
-		gbl_Bot_Manage_Pane.rowWeights = new double[]{0.0};
-		Bot_Manage_Pane.setLayout(gbl_Bot_Manage_Pane);
+	    //Bot Pane
+	      JPanel Bot_Manage_Pane = new JPanel();
+	      Manage_Interface.add(Bot_Manage_Pane, BorderLayout.SOUTH);
+	      GridBagLayout gbl_Bot_Manage_Pane = new GridBagLayout();
+	      gbl_Bot_Manage_Pane.columnWidths = new int[] {120, 120, 120, 120, 120};
+	      gbl_Bot_Manage_Pane.rowHeights = new int[] {35};
+	      gbl_Bot_Manage_Pane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+	      gbl_Bot_Manage_Pane.rowWeights = new double[]{0.0};
+	      Bot_Manage_Pane.setLayout(gbl_Bot_Manage_Pane);
 		
-		JButton Add_Pd_Btn = new JButton("Add Product");
-		Add_Pd_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Add_Pd_Btn = new GridBagConstraints();
-		gbc_Add_Pd_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Add_Pd_Btn.insets = new Insets(5, 0, 5, 5);
-		gbc_Add_Pd_Btn.gridx = 0;
-		gbc_Add_Pd_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Add_Pd_Btn, gbc_Add_Pd_Btn);
+	      	JButton Add_Pd_Btn = new JButton("Add Product");
+			Add_Pd_Btn.setFont(new Font("Tahoma", Font.BOLD, 13));
+			GridBagConstraints gbc_Add_Pd_Btn = new GridBagConstraints();
+			gbc_Add_Pd_Btn.fill = GridBagConstraints.BOTH;
+			gbc_Add_Pd_Btn.insets = new Insets(0, 0, 0, 5);
+			gbc_Add_Pd_Btn.gridx = 0;
+			gbc_Add_Pd_Btn.gridy = 0;
+			Bot_Manage_Pane.add(Add_Pd_Btn, gbc_Add_Pd_Btn);
+			
+			JButton Add_Acc_Btn = new JButton("Manage Staff");
+			Add_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 13));
+			GridBagConstraints gbc_Add_Acc_Btn = new GridBagConstraints();
+			gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
+			gbc_Add_Acc_Btn.insets = new Insets(0, 0, 0, 5);
+			gbc_Add_Acc_Btn.gridx = 1;
+			gbc_Add_Acc_Btn.gridy = 0;
+			Bot_Manage_Pane.add(Add_Acc_Btn, gbc_Add_Acc_Btn);
 		
-		JButton Man_Acc_Btn = new JButton("Manage Account");
-		Man_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Man_Acc_Btn = new GridBagConstraints();
-		gbc_Man_Acc_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Man_Acc_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Man_Acc_Btn.gridx = 1;
-		gbc_Man_Acc_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Man_Acc_Btn, gbc_Man_Acc_Btn);
+			JButton Man_Cus_Btn = new JButton("Manage Customer");
+			Man_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 13));
+			GridBagConstraints gbc_Man_Cus_Btn = new GridBagConstraints();
+			gbc_Man_Cus_Btn.fill = GridBagConstraints.BOTH;
+			gbc_Man_Cus_Btn.insets = new Insets(0, 0, 0, 5);
+			gbc_Man_Cus_Btn.gridx = 2;
+			gbc_Man_Cus_Btn.gridy = 0;
+			Bot_Manage_Pane.add(Man_Cus_Btn, gbc_Man_Cus_Btn);
 		
-		JButton Man_Cus_Btn = new JButton("Manage Customer");
-		Man_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Man_Cus_Btn = new GridBagConstraints();
-		gbc_Man_Cus_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Man_Cus_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Man_Cus_Btn.gridx = 2;
-		gbc_Man_Cus_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Man_Cus_Btn, gbc_Man_Cus_Btn);
+			JButton Rep_Car_Btn = new JButton("Report Car Type");
+			Rep_Car_Btn.setFont(new Font("Tahoma", Font.BOLD, 13));
+			GridBagConstraints gbc_Rep_Car_Btn = new GridBagConstraints();
+			gbc_Rep_Car_Btn.fill = GridBagConstraints.BOTH;
+			gbc_Rep_Car_Btn.insets = new Insets(0, 0, 0, 5);
+			gbc_Rep_Car_Btn.gridx = 3;
+			gbc_Rep_Car_Btn.gridy = 0;
+			Bot_Manage_Pane.add(Rep_Car_Btn, gbc_Rep_Car_Btn);
 		
-		JButton Rep_Car_Btn = new JButton("Report Car Type");
-		Rep_Car_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Rep_Car_Btn = new GridBagConstraints();
-		gbc_Rep_Car_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Rep_Car_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Rep_Car_Btn.gridx = 3;
-		gbc_Rep_Car_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Rep_Car_Btn, gbc_Rep_Car_Btn);
+			JButton Rep_Tur_Btn = new JButton("Report Turnover");
+			Rep_Tur_Btn.setFont(new Font("Tahoma", Font.BOLD, 13));
+			GridBagConstraints gbc_Rep_Tur_Btn = new GridBagConstraints();
+			gbc_Rep_Tur_Btn.fill = GridBagConstraints.BOTH;
+			gbc_Rep_Tur_Btn.gridx = 4;
+			gbc_Rep_Tur_Btn.gridy = 0;
+			Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
 		
-		JButton Rep_Tur_Btn = new JButton("Report Turnover");
-		Rep_Tur_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		GridBagConstraints gbc_Rep_Tur_Btn = new GridBagConstraints();
-		gbc_Rep_Tur_Btn.insets = new Insets(5, 5, 5, 0);
-		gbc_Rep_Tur_Btn.fill = GridBagConstraints.BOTH;
-		gbc_Rep_Tur_Btn.gridx = 4;
-		gbc_Rep_Tur_Btn.gridy = 0;
-		Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
+		//Top Pane
 		JPanel Top_Manage_Pane = new JPanel();
 		Manage_Interface.add(Top_Manage_Pane, BorderLayout.NORTH);
 		Top_Manage_Pane.setLayout(new BorderLayout(0, 0));
@@ -349,5 +353,42 @@ public class Manage extends JFrame {
 				dispose();
 			}
 		});
+	    Man_Cus_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new Customer_Manager(Manage.this.user);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(true);
+				dispose();
+				
+			}
+		});
+	   Add_Acc_Btn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			try {
+				new Staff_Manager(Manage.this.user);
+			} catch (ClassNotFoundException | IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			setVisible(true);
+			dispose();
+		}
+	});
 	}
 }

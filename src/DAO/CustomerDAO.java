@@ -59,6 +59,27 @@ public class CustomerDAO {
 			return false;
 		}
 	}
+	public boolean saveCustomerInTable(Customer cus) throws SQLException {
+		int id = cus.getCustomer_id();
+		String name = cus.getCustomer_name();
+		String date = cus.getCustomer_date().toString();
+		String address = cus.getCustomer_address();
+		String phone = cus.getCustomer_phone();
+		String query = "INSERT INTO car_customer(customer_id, customer_name,customer_date, customer_address, customer_phone ) VALUES(?,?,?,?,?)";
+		PreparedStatement stat = conn.prepareStatement(query);
+		stat.setInt(1, id);
+		stat.setString(2, name);
+		stat.setString(3, date);
+		stat.setString(4, address);
+		stat.setString(5, phone);
+		int p = stat.executeUpdate();
+		if(p == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	public boolean updateCustomerInTable(Customer cus) throws SQLException {
 		int id = cus.getCustomer_id();
 		String name = cus.getCustomer_name();
@@ -98,7 +119,7 @@ public class CustomerDAO {
 		if (result.next() != false) {
 			customerList = new ArrayList<Customer>();
 			Customer cus;
-			int id, products_id;
+			int id, products_id ;
 			String name, address,phone;
 			LocalDate date;
 			do {
@@ -107,9 +128,18 @@ public class CustomerDAO {
 				date = LocalDate.parse(result.getString(3));
 				address = result.getString(4);
 				phone = result.getString(5);
-				products_id = result.getInt(6);
-				cus = new Customer(id, name, date, address, phone, products_id);
-				customerList.add(cus);
+				String test = result.getString(6);
+				if(test != null) {
+					products_id = result.getInt(6);
+					cus = new Customer(id, name, date, address, phone, products_id);
+					customerList.add(cus);
+				}
+				else {
+					products_id = 0;
+					cus = new Customer(id, name, date, address, phone, products_id);
+					customerList.add(cus);
+				}
+				
 			} while (result.next() != false);
 		}
 		return customerList;

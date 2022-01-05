@@ -75,10 +75,10 @@ public class CarHistoryModel extends AbstractTableModel {
 		if(col == 0) {
 			return Integer.class;
 		}
-		if(col == 6 && col == 7) {
+		if(col == 6 || col == 7) {
 			return Double.class;
 		}
-		if(col == 8 && col == 9) {
+		if(col == 8 || col == 9) {
 			return LocalDate.class;
 		}
 		else {

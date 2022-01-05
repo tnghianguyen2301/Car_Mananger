@@ -20,6 +20,13 @@ public class Customer {
 		this.customer_phone = customer_phone;
 		this.customer_products_id = customer_products_id;
 	}
+	public Customer(int customer_id, String customer_name, LocalDate customer_date, String customer_address, String customer_phone) {
+		this.customer_id = customer_id;
+		this.customer_name = customer_name;
+		this.customer_date = customer_date;
+		this.customer_address = customer_address;
+		this.customer_phone = customer_phone;
+	}
 	public int getCustomer_id() {
 		return customer_id;
 	}
