@@ -788,41 +788,37 @@ public class Application extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-//				String status = Filter_Status.getSelectedItem().toString();
-//				String type = Filter_Type.getSelectedItem().toString();
-//				String color = Filter_Color.getSelectedItem().toString();
-//				String trademark = Filter_Trademark.getSelectedItem().toString();
-//				String name = Filter_Name.getText();
-//				contentPane.add(Main_Pane, BorderLayout.CENTER);
-//				Main_Pane.setLayout(null);
-//				try {
-//					DBConnection.init("database.properties");
-//				} catch (ClassNotFoundException | IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				  Connection conn = null;
-//				try {
-//					conn = DBConnection.getConnection();
-//				} catch (SQLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				  cpDAO = new CarProductsDAO(conn);
-//				  try {
-//					cpDAO.loadDataFilter(status, type, color, trademark, name);
-//				} catch (SQLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				  tableModel = new CarProductsModel(cpDAO);
-//			      table = new JTable(tableModel);
-//			      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
-//			      table.setAutoCreateRowSorter(true);
-//			      JScrollPane scrollPane = new JScrollPane(table);
-//			      scrollPane.setBounds(350, 50, 800, 200);
-//			      scrollPane.setPreferredSize(new Dimension(900, 200));
-//			      Main_Pane.add(scrollPane, BorderLayout.CENTER);
+				String status = Filter_Status.getSelectedItem().toString();
+				String type = Filter_Type.getSelectedItem().toString();
+				String color = Filter_Color.getSelectedItem().toString();
+				String trademark = Filter_Trademark.getSelectedItem().toString();
+				String name = Filter_Name.getText();
+				try {
+					DBConnection.init("database.properties");
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				  try {
+					Connection conn = DBConnection.getConnection();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				  try {
+					cpDAO.loadDataFilter(status, type, color, trademark, name);
+					 tableModel = new CarProductsModel(cpDAO);
+				      table = new JTable(tableModel);
+				      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+				      table.setAutoCreateRowSorter(true);
+				      JScrollPane scrollPane = new JScrollPane(table);
+				      scrollPane.setBounds(0, 0, 800, 400);
+				      scrollPane.setPreferredSize(new Dimension(800, 400));
+				      contentPane.add(scrollPane, BorderLayout.CENTER);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
 			}
 		});
 	    
