@@ -23,50 +23,94 @@ import DAO.UserDAO;
 import DTO.User;
 import hash_password.PBKDF2_Verify_Password;
 import Untilities.DBConnection;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.ImageIcon;
 
 public class LoginDemo extends JFrame implements ActionListener {
 
     JPanel panel;
-    JLabel user_label, password_label, message;
+    JLabel user_label, password_label;
     JTextField userName_text;
     JPasswordField password_text;
     JButton submit, cancel;
+    private JLabel lblNewLabel;
 
     LoginDemo() {
+
+        panel = new JPanel();
+        GridBagLayout gbl_panel = new GridBagLayout();
+        gbl_panel.columnWidths = new int[] {60, 120};
+        gbl_panel.rowHeights = new int[] {50, 30, 30, 30};
+        gbl_panel.columnWeights = new double[]{0.0, 0.0};
+        gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
+        panel.setLayout(gbl_panel);
+        userName_text = new JTextField();
+        GridBagConstraints gbc_userName_text = new GridBagConstraints();
+        gbc_userName_text.fill = GridBagConstraints.BOTH;
+        gbc_userName_text.insets = new Insets(0, 0, 5, 5);
+        gbc_userName_text.gridx = 1;
+        gbc_userName_text.gridy = 1;
+        panel.add(userName_text, gbc_userName_text);
         
         // User Label
         user_label = new JLabel();
         user_label.setText("User Name :");
-        userName_text = new JTextField();
+        GridBagConstraints gbc_user_label = new GridBagConstraints();
+        gbc_user_label.anchor = GridBagConstraints.WEST;
+        gbc_user_label.fill = GridBagConstraints.VERTICAL;
+        gbc_user_label.insets = new Insets(0, 0, 5, 5);
+        gbc_user_label.gridx = 0;
+        gbc_user_label.gridy = 1;
+        panel.add(user_label, gbc_user_label);
+        
+        lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(null);
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+        gbc_lblNewLabel.gridx = 1;
+        gbc_lblNewLabel.gridy = 0;
+        panel.add(lblNewLabel, gbc_lblNewLabel);
         
         // Password
 
         password_label = new JLabel();
         password_label.setText("Password :");
-        password_text = new JPasswordField();
-
-        // Submit
-
-        submit = new JButton("SUBMIT");
-
-        panel = new JPanel(new GridLayout(3, 1));
-
-        panel.add(user_label);
-        panel.add(userName_text);
-        panel.add(password_label);
-        panel.add(password_text);
-
-        message = new JLabel();
-        panel.add(message);
-        panel.add(submit);
+        GridBagConstraints gbc_password_label = new GridBagConstraints();
+        gbc_password_label.anchor = GridBagConstraints.WEST;
+        gbc_password_label.fill = GridBagConstraints.VERTICAL;
+        gbc_password_label.insets = new Insets(0, 0, 5, 5);
+        gbc_password_label.gridx = 0;
+        gbc_password_label.gridy = 2;
+        panel.add(password_label, gbc_password_label);
+                        password_text = new JPasswordField();
+                        GridBagConstraints gbc_password_text = new GridBagConstraints();
+                        gbc_password_text.fill = GridBagConstraints.BOTH;
+                        gbc_password_text.insets = new Insets(0, 0, 5, 5);
+                        gbc_password_text.gridx = 1;
+                        gbc_password_text.gridy = 2;
+                        panel.add(password_text, gbc_password_text);
+                
+                        // Submit
+                
+                        submit = new JButton("SUBMIT");
+                        GridBagConstraints gbc_submit = new GridBagConstraints();
+                        gbc_submit.anchor = GridBagConstraints.WEST;
+                        gbc_submit.fill = GridBagConstraints.VERTICAL;
+                        gbc_submit.insets = new Insets(0, 0, 0, 5);
+                        gbc_submit.gridx = 1;
+                        gbc_submit.gridy = 3;
+                        panel.add(submit, gbc_submit);
+                        
+                        // Adding the listeners to components..
+                        submit.addActionListener(this);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        // Adding the listeners to components..
-        submit.addActionListener(this);
-        add(panel, BorderLayout.CENTER);
+        getContentPane().add(panel, BorderLayout.CENTER);
         setTitle("Please Login Here !");
-        setSize(300, 100);
+        setSize(415, 297);
         setVisible(true);
         setLocationRelativeTo(null);
     }
