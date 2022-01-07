@@ -56,7 +56,7 @@ public class LoginDemo extends JFrame implements ActionListener {
         gbc_lblNewLabel.gridx = 1;
         gbc_lblNewLabel.gridy = 0;
         panel.add(lblNewLabel, gbc_lblNewLabel);
-       ImageIcon Log_Icon = new ImageIcon("img/Log_Icon.png");
+        ImageIcon Log_Icon = new ImageIcon("img/Log_Icon.png");
         lblNewLabel.setIcon(Log_Icon);
       
         // User
@@ -89,27 +89,26 @@ public class LoginDemo extends JFrame implements ActionListener {
         gbc_password_label.gridx = 0;
         gbc_password_label.gridy = 2;
         panel.add(password_label, gbc_password_label);
-                        password_text = new JPasswordField();
-                        GridBagConstraints gbc_password_text = new GridBagConstraints();
-                        gbc_password_text.fill = GridBagConstraints.BOTH;
-                        gbc_password_text.insets = new Insets(0, 0, 5, 5);
-                        gbc_password_text.gridx = 1;
-                        gbc_password_text.gridy = 2;
-                        panel.add(password_text, gbc_password_text);
+        password_text = new JPasswordField();
+        GridBagConstraints gbc_password_text = new GridBagConstraints();
+        gbc_password_text.fill = GridBagConstraints.BOTH;
+        gbc_password_text.insets = new Insets(0, 0, 5, 5);
+        gbc_password_text.gridx = 1;
+        gbc_password_text.gridy = 2;
+        panel.add(password_text, gbc_password_text);
                 
-                        // Submit
-                
-                        submit = new JButton("SUBMIT");
-                        GridBagConstraints gbc_submit = new GridBagConstraints();
-                        gbc_submit.anchor = GridBagConstraints.WEST;
-                        gbc_submit.fill = GridBagConstraints.VERTICAL;
-                        gbc_submit.insets = new Insets(0, 0, 0, 5);
-                        gbc_submit.gridx = 1;
-                        gbc_submit.gridy = 3;
-                        panel.add(submit, gbc_submit);
+        // Submit    
+        submit = new JButton("SUBMIT");
+        GridBagConstraints gbc_submit = new GridBagConstraints();
+        gbc_submit.anchor = GridBagConstraints.WEST;
+        gbc_submit.fill = GridBagConstraints.VERTICAL;
+        gbc_submit.insets = new Insets(0, 0, 0, 5);
+        gbc_submit.gridx = 1;
+        gbc_submit.gridy = 3;
+        panel.add(submit, gbc_submit);
                         
-                        // Adding the listeners to components..
-                        submit.addActionListener(this);
+        // Adding the listeners to components..
+        submit.addActionListener(this);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().add(panel, BorderLayout.CENTER);

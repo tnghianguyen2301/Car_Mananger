@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +28,8 @@ import DAO.CarProductsModel;
 import DAO.HistoryProdutcsDAO;
 import DTO.User;
 import Untilities.DBConnection;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
 
 public class Manage extends JFrame {
 
@@ -62,7 +65,7 @@ public class Manage extends JFrame {
 	public Manage() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 825, 510);
+		setBounds(100, 100, 860, 510);
 		Manage_Interface = new JPanel();
 		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Manage_Interface.setLayout(new BorderLayout(0, 0));
@@ -71,7 +74,6 @@ public class Manage extends JFrame {
 		
 		JPanel Main_Manage_Pane = new JPanel();
 		Manage_Interface.add(Main_Manage_Pane, BorderLayout.CENTER);
-		Main_Manage_Pane.setLayout(null);
 		
 		//Data Table
 		  DBConnection.init("database.properties");
@@ -81,13 +83,13 @@ public class Manage extends JFrame {
 		  hpDAO = new HistoryProdutcsDAO(conn);
 		  hpDAO.loadHistoryCarDataToList();
 		  tableModel = new CarHistoryModel(hpDAO);
+	      Main_Manage_Pane.setLayout(new GridLayout(0, 1, 0, 0));
 	      table = new JTable(tableModel);
-	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
-	      scrollPane.setBounds(0, 0, 800, 400);
 	      scrollPane.setPreferredSize(new Dimension(800, 400));
-	      Main_Manage_Pane.add(scrollPane, BorderLayout.CENTER);
+	      Main_Manage_Pane.add(scrollPane);
 		
 	    //Bot Pane
 	      JPanel Bot_Manage_Pane = new JPanel();
@@ -142,6 +144,22 @@ public class Manage extends JFrame {
 			gbc_Rep_Tur_Btn.gridx = 4;
 			gbc_Rep_Tur_Btn.gridy = 0;
 			Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
+			
+			//Icon
+		    ImageIcon Add_Icon = new ImageIcon("img/Add_Icon.png");
+		    Add_Pd_Btn.setIcon(Add_Icon);
+
+		    ImageIcon User_Icon = new ImageIcon("img/User_Icon.png");
+		    Add_Acc_Btn.setIcon(User_Icon);
+
+		    ImageIcon Customer_Icon = new ImageIcon("img/Customer_Icon.png");
+		    Man_Cus_Btn.setIcon(Customer_Icon);
+
+		    ImageIcon Car_Icon = new ImageIcon("img/Car_Icon.png");
+		    Rep_Car_Btn.setIcon(Car_Icon);
+
+		    ImageIcon Report_Icon = new ImageIcon("img/Report_Icon.png");
+		    Rep_Tur_Btn.setIcon(Report_Icon);
 		
 		//Top Pane
 		JPanel Top_Manage_Pane = new JPanel();
@@ -154,6 +172,19 @@ public class Manage extends JFrame {
 		
 		JButton Back_Main_Interface = new JButton("Back");
 		Top_Manage_Pane.add(Back_Main_Interface, BorderLayout.EAST);
+
+	    ImageIcon Back_Icon = new ImageIcon("img/Back_Icon.png");
+	    Back_Main_Interface.setIcon(Back_Icon);
+		
+		JPanel Offset_Top = new JPanel();
+		FlowLayout fl_Offset_Top = (FlowLayout) Offset_Top.getLayout();
+		fl_Offset_Top.setVgap(3);
+		Top_Manage_Pane.add(Offset_Top, BorderLayout.NORTH);
+		
+		JPanel Offset_Bot = new JPanel();
+		FlowLayout fl_Offset_Bot = (FlowLayout) Offset_Bot.getLayout();
+		fl_Offset_Bot.setVgap(3);
+		Top_Manage_Pane.add(Offset_Bot, BorderLayout.SOUTH);
 	    this.setPreferredSize(new Dimension(800, 600));
 	    
 	    Back_Main_Interface.addActionListener(new ActionListener() {
@@ -182,7 +213,7 @@ public class Manage extends JFrame {
 	public Manage(User user) throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 825, 510);
+		setBounds(100, 100, 860, 510);
 		Manage_Interface = new JPanel();
 		Manage_Interface.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Manage_Interface.setLayout(new BorderLayout(0, 0));
@@ -202,8 +233,9 @@ public class Manage extends JFrame {
 		  hpDAO = new HistoryProdutcsDAO(conn);
 		  hpDAO.loadHistoryCarDataToList();
 		  tableModel = new CarHistoryModel(hpDAO);
+	      Main_Manage_Pane.setLayout(new GridLayout(0, 1, 0, 0));
 	      table = new JTable(tableModel);
-	      table.setFont(new Font("Constantia", Font.PLAIN, 15));
+	      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
 	      scrollPane.setBounds(0, 0, 800, 400);
@@ -263,6 +295,22 @@ public class Manage extends JFrame {
 			gbc_Rep_Tur_Btn.gridx = 4;
 			gbc_Rep_Tur_Btn.gridy = 0;
 			Bot_Manage_Pane.add(Rep_Tur_Btn, gbc_Rep_Tur_Btn);
+			
+			//Icon
+		    ImageIcon Add_Icon = new ImageIcon("img/Add_Icon.png");
+		    Add_Pd_Btn.setIcon(Add_Icon);
+
+		    ImageIcon User_Icon = new ImageIcon("img/User_Icon.png");
+		    Add_Acc_Btn.setIcon(User_Icon);
+
+		    ImageIcon Customer_Icon = new ImageIcon("img/Customer_Icon.png");
+		    Man_Cus_Btn.setIcon(Customer_Icon);
+
+		    ImageIcon Car_Icon = new ImageIcon("img/Car_Icon.png");
+		    Rep_Car_Btn.setIcon(Car_Icon);
+
+		    ImageIcon Report_Icon = new ImageIcon("img/Report_Icon.png");
+		    Rep_Tur_Btn.setIcon(Report_Icon);
 		
 		//Top Pane
 		JPanel Top_Manage_Pane = new JPanel();
@@ -275,6 +323,18 @@ public class Manage extends JFrame {
 		
 		JButton Back_Main_Interface = new JButton("Back");
 		Top_Manage_Pane.add(Back_Main_Interface, BorderLayout.EAST);
+		ImageIcon Back_Icon = new ImageIcon("img/Back_Icon.png");
+	    Back_Main_Interface.setIcon(Back_Icon);
+		
+		JPanel Offset_Top = new JPanel();
+		FlowLayout fl_Offset_Top = (FlowLayout) Offset_Top.getLayout();
+		fl_Offset_Top.setVgap(3);
+		Top_Manage_Pane.add(Offset_Top, BorderLayout.NORTH);
+		
+		JPanel Offset_Bot = new JPanel();
+		FlowLayout fl_Offset_Bot = (FlowLayout) Offset_Bot.getLayout();
+		fl_Offset_Bot.setVgap(3);
+		Top_Manage_Pane.add(Offset_Bot, BorderLayout.SOUTH);
 	    this.setPreferredSize(new Dimension(800, 600));
 	    
 	    Back_Main_Interface.addActionListener(new ActionListener() {
