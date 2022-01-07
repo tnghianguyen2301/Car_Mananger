@@ -46,15 +46,20 @@ public class LoginDemo extends JFrame implements ActionListener {
         gbl_panel.columnWeights = new double[]{0.0, 0.0};
         gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
         panel.setLayout(gbl_panel);
-        userName_text = new JTextField();
-        GridBagConstraints gbc_userName_text = new GridBagConstraints();
-        gbc_userName_text.fill = GridBagConstraints.BOTH;
-        gbc_userName_text.insets = new Insets(0, 0, 5, 5);
-        gbc_userName_text.gridx = 1;
-        gbc_userName_text.gridy = 1;
-        panel.add(userName_text, gbc_userName_text);
         
-        // User Label
+        //Icon
+        lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(null);
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+        gbc_lblNewLabel.gridx = 1;
+        gbc_lblNewLabel.gridy = 0;
+        panel.add(lblNewLabel, gbc_lblNewLabel);
+        ImageIcon Log_Icon = new ImageIcon(this.getClass().getResource("/Log_Icon.png"));
+        lblNewLabel.setIcon(Log_Icon);
+        
+        // User
         user_label = new JLabel();
         user_label.setText("User Name :");
         GridBagConstraints gbc_user_label = new GridBagConstraints();
@@ -64,15 +69,14 @@ public class LoginDemo extends JFrame implements ActionListener {
         gbc_user_label.gridx = 0;
         gbc_user_label.gridy = 1;
         panel.add(user_label, gbc_user_label);
-        
-        lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(null);
-        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-        gbc_lblNewLabel.gridx = 1;
-        gbc_lblNewLabel.gridy = 0;
-        panel.add(lblNewLabel, gbc_lblNewLabel);
+
+        userName_text = new JTextField();
+        GridBagConstraints gbc_userName_text = new GridBagConstraints();
+        gbc_userName_text.fill = GridBagConstraints.BOTH;
+        gbc_userName_text.insets = new Insets(0, 0, 5, 5);
+        gbc_userName_text.gridx = 1;
+        gbc_userName_text.gridy = 1;
+        panel.add(userName_text, gbc_userName_text);
         
         // Password
 
