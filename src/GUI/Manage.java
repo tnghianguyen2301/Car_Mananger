@@ -203,7 +203,7 @@ public class Manage extends JFrame {
 		  hpDAO.loadHistoryCarDataToList();
 		  tableModel = new CarHistoryModel(hpDAO);
 	      table = new JTable(tableModel);
-	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	      table.setFont(new Font("Constantia", Font.PLAIN, 15));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
 	      scrollPane.setBounds(0, 0, 800, 400);

@@ -426,7 +426,7 @@ public class Staff_Manager extends JFrame {
 		sDAO.loadStaffInTable();
 		tableModel = new StaffModel(sDAO);
 	    table = new JTable(tableModel);
-	    table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	    table.setFont(new Font("Constantia", Font.PLAIN, 15));
 	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(0, 0, 800, 400);
