@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,6 +35,7 @@ import DAO.StaffModel;
 import DTO.Staff;
 import DTO.User;
 import Untilities.DBConnection;
+import java.awt.FlowLayout;
 
 public class Staff_Manager extends JFrame {
 
@@ -86,7 +88,7 @@ public class Staff_Manager extends JFrame {
 		sDAO.loadStaffInTable();
 		tableModel = new StaffModel(sDAO);
 	    table = new JTable(tableModel);
-	    table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	    table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(0, 0, 800, 400);
@@ -104,7 +106,7 @@ public class Staff_Manager extends JFrame {
 		Bot_Pane.setLayout(gbl_Bot_Pane);
 		
 		JButton Add_Acc_Btn = new JButton("Add");
-		Add_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Add_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_Add_Acc_Btn = new GridBagConstraints();
 		gbc_Add_Acc_Btn.fill = GridBagConstraints.BOTH;
 		gbc_Add_Acc_Btn.insets = new Insets(0, 0, 0, 5);
@@ -113,7 +115,7 @@ public class Staff_Manager extends JFrame {
 		Bot_Pane.add(Add_Acc_Btn, gbc_Add_Acc_Btn);
 		
 		JButton Edit_Acc_Btn = new JButton("Edit");
-		Edit_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Edit_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_Edit_Acc_Btn = new GridBagConstraints();
 		gbc_Edit_Acc_Btn.fill = GridBagConstraints.BOTH;
 		gbc_Edit_Acc_Btn.insets = new Insets(0, 0, 0, 5);
@@ -122,12 +124,22 @@ public class Staff_Manager extends JFrame {
 		Bot_Pane.add(Edit_Acc_Btn, gbc_Edit_Acc_Btn);
 		
 		JButton Del_Acc_Btn = new JButton("Delete");
-		Del_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Del_Acc_Btn.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_Del_Acc_Btn = new GridBagConstraints();
 		gbc_Del_Acc_Btn.fill = GridBagConstraints.BOTH;
 		gbc_Del_Acc_Btn.gridx = 2;
 		gbc_Del_Acc_Btn.gridy = 0;
 		Bot_Pane.add(Del_Acc_Btn, gbc_Del_Acc_Btn);
+		
+		//Icon
+		ImageIcon Add_Icon = new ImageIcon("img/Add_Icon.png");
+		Add_Acc_Btn.setIcon(Add_Icon);
+		
+		ImageIcon Edit_Icon = new ImageIcon("img/Edit_Icon.png");
+		Edit_Acc_Btn.setIcon(Edit_Icon);
+	    
+	    ImageIcon Deleted_Icon = new ImageIcon("img/Deleted_Icon.png");
+	    Del_Acc_Btn.setIcon(Deleted_Icon);
 		
 		//Top Pane
 		JPanel Top_Pane = new JPanel();
@@ -140,6 +152,18 @@ public class Staff_Manager extends JFrame {
 		
 		JButton Back_Main_Interface = new JButton("Back");
 		Top_Pane.add(Back_Main_Interface, BorderLayout.EAST);
+		ImageIcon Back_Icon = new ImageIcon("img/Back_Icon.png");
+	    Back_Main_Interface.setIcon(Back_Icon);
+	    
+	    JPanel Offset_Top = new JPanel();
+	    FlowLayout flowLayout = (FlowLayout) Offset_Top.getLayout();
+	    flowLayout.setVgap(3);
+	    Top_Pane.add(Offset_Top, BorderLayout.NORTH);
+	    
+	    JPanel Offset_Bot = new JPanel();
+	    FlowLayout flowLayout_1 = (FlowLayout) Offset_Bot.getLayout();
+	    flowLayout_1.setVgap(3);
+	    Top_Pane.add(Offset_Bot, BorderLayout.SOUTH);
 		
 		//Infomation Pane
 	    JPanel Sale_Pane = new JPanel();
@@ -426,7 +450,7 @@ public class Staff_Manager extends JFrame {
 		sDAO.loadStaffInTable();
 		tableModel = new StaffModel(sDAO);
 	    table = new JTable(tableModel);
-	    table.setFont(new Font("Constantia", Font.PLAIN, 15));
+	    table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(0, 0, 800, 400);
@@ -469,6 +493,16 @@ public class Staff_Manager extends JFrame {
 		gbc_Del_Acc_Btn.gridy = 0;
 		Bot_Pane.add(Del_Acc_Btn, gbc_Del_Acc_Btn);
 		
+		//Icon
+		ImageIcon Add_Icon = new ImageIcon("img/Add_Icon.png");
+		Add_Acc_Btn.setIcon(Add_Icon);
+				
+		ImageIcon Edit_Icon = new ImageIcon("img/Edit_Icon.png");
+		Edit_Acc_Btn.setIcon(Edit_Icon);
+			    
+		ImageIcon Deleted_Icon = new ImageIcon("img/Deleted_Icon.png");
+		Del_Acc_Btn.setIcon(Deleted_Icon);
+		
 		//Top Pane
 		JPanel Top_Pane = new JPanel();
 		contentPane.add(Top_Pane, BorderLayout.NORTH);
@@ -480,6 +514,18 @@ public class Staff_Manager extends JFrame {
 		
 		JButton Back_Main_Interface = new JButton("Back");
 		Top_Pane.add(Back_Main_Interface, BorderLayout.EAST);
+		ImageIcon Back_Icon = new ImageIcon("img/Back_Icon.png");
+	    Back_Main_Interface.setIcon(Back_Icon);
+	    
+	    JPanel Offset_Top = new JPanel();
+	    FlowLayout flowLayout = (FlowLayout) Offset_Top.getLayout();
+	    flowLayout.setVgap(3);
+	    Top_Pane.add(Offset_Top, BorderLayout.NORTH);
+	    
+	    JPanel Offset_Bot = new JPanel();
+	    FlowLayout flowLayout_1 = (FlowLayout) Offset_Bot.getLayout();
+	    flowLayout_1.setVgap(3);
+	    Top_Pane.add(Offset_Bot, BorderLayout.SOUTH);
 		
 		//Infomation Pane
 	    JPanel Sale_Pane = new JPanel();

@@ -3,6 +3,7 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ import DTO.User;
 import Untilities.DBConnection;
 
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -72,7 +74,7 @@ public class Customer_Manager extends JFrame {
 	public Customer_Manager() throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Customer Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 970, 450);
+		setBounds(100, 100, 970, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -85,7 +87,7 @@ public class Customer_Manager extends JFrame {
 		cDAO.loadDataToList();
 		tableModel = new CustomerModel(cDAO);
 	    table = new JTable(tableModel);
-	    table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	    table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(0, 0, 800, 400);
@@ -104,14 +106,18 @@ public class Customer_Manager extends JFrame {
 	    JButton Back_Main_Interface = new JButton("Back");
 	    Top_Pane.add(Back_Main_Interface, BorderLayout.EAST);
 	    
-	    //Bot Pane
-	    JPanel Bot_Pane = new JPanel();
-	    contentPane.add(Bot_Pane, BorderLayout.SOUTH);
-	    Bot_Pane.setLayout(new GridLayout(0, 1, 40, 0));
-	    
-	    JButton Edit_Cus_Btn = new JButton("Edit Profile");
-	    Edit_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-	    Bot_Pane.add(Edit_Cus_Btn);
+	    ImageIcon Back_Icon = new ImageIcon("img/Back_Icon.png");
+	    Back_Main_Interface.setIcon(Back_Icon);
+		
+		JPanel Offset_Top = new JPanel();
+		FlowLayout fl_Offset_Top = (FlowLayout) Offset_Top.getLayout();
+		fl_Offset_Top.setVgap(3);
+		Top_Pane.add(Offset_Top, BorderLayout.NORTH);
+		
+		JPanel Offset_Bot = new JPanel();
+		FlowLayout fl_Offset_Bot = (FlowLayout) Offset_Bot.getLayout();
+		fl_Offset_Bot.setVgap(3);
+		Top_Pane.add(Offset_Bot, BorderLayout.SOUTH);
 	    
 	    //Infomation Pane
 	    JPanel Sale_Pane = new JPanel();
@@ -132,7 +138,7 @@ public class Customer_Manager extends JFrame {
 	    Sale_Pane.add(panel, gbc_panel);
 	    GridBagLayout gbl_panel = new GridBagLayout();
 	    gbl_panel.columnWidths = new int[] {80, 80};
-	    gbl_panel.rowHeights = new int[] {30, 20, 30, 20, 30, 20, 30, 20, 30};
+	    gbl_panel.rowHeights = new int[] {30, 20, 30, 20, 30, 20, 30, 20, 30, 40};
 	    gbl_panel.columnWeights = new double[]{0.0, 0.0};
 	    gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 	    panel.setLayout(gbl_panel);
@@ -150,7 +156,7 @@ public class Customer_Manager extends JFrame {
 	    JLabel lblNewLabel_2 = new JLabel("Customer Name:");
 	    GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 	    gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
-	    gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 	    gbc_lblNewLabel_2.gridx = 0;
 	    gbc_lblNewLabel_2.gridy = 1;
 	    panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
@@ -169,7 +175,7 @@ public class Customer_Manager extends JFrame {
 	    JLabel lblNewLabel_2_1 = new JLabel("Date of birth:");
 	    GridBagConstraints gbc_lblNewLabel_2_1 = new GridBagConstraints();
 	    gbc_lblNewLabel_2_1.anchor = GridBagConstraints.WEST;
-	    gbc_lblNewLabel_2_1.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2_1.insets = new Insets(0, 0, 5, 5);
 	    gbc_lblNewLabel_2_1.gridx = 0;
 	    gbc_lblNewLabel_2_1.gridy = 3;
 	    panel.add(lblNewLabel_2_1, gbc_lblNewLabel_2_1);
@@ -188,7 +194,7 @@ public class Customer_Manager extends JFrame {
 	    JLabel lblNewLabel_2_2 = new JLabel("Address:");
 	    GridBagConstraints gbc_lblNewLabel_2_2 = new GridBagConstraints();
 	    gbc_lblNewLabel_2_2.anchor = GridBagConstraints.WEST;
-	    gbc_lblNewLabel_2_2.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2_2.insets = new Insets(0, 0, 5, 5);
 	    gbc_lblNewLabel_2_2.gridx = 0;
 	    gbc_lblNewLabel_2_2.gridy = 5;
 	    panel.add(lblNewLabel_2_2, gbc_lblNewLabel_2_2);
@@ -207,7 +213,7 @@ public class Customer_Manager extends JFrame {
 	    JLabel lblNewLabel_2_2_1 = new JLabel("Phone number:");
 	    GridBagConstraints gbc_lblNewLabel_2_2_1 = new GridBagConstraints();
 	    gbc_lblNewLabel_2_2_1.anchor = GridBagConstraints.WEST;
-	    gbc_lblNewLabel_2_2_1.insets = new Insets(0, 0, 0, 5);
+	    gbc_lblNewLabel_2_2_1.insets = new Insets(0, 0, 5, 5);
 	    gbc_lblNewLabel_2_2_1.gridx = 0;
 	    gbc_lblNewLabel_2_2_1.gridy = 7;
 	    panel.add(lblNewLabel_2_2_1, gbc_lblNewLabel_2_2_1);
@@ -222,6 +228,41 @@ public class Customer_Manager extends JFrame {
 	    gbc_Cus_Phone.gridx = 0;
 	    gbc_Cus_Phone.gridy = 8;
 	    panel.add(Cus_Phone, gbc_Cus_Phone);
+	    
+	    JButton Edit_Cus_Btn = new JButton("Edit Profile");
+	    GridBagConstraints gbc_Edit_Cus_Btn = new GridBagConstraints();
+	    gbc_Edit_Cus_Btn.anchor = GridBagConstraints.SOUTH;
+	    gbc_Edit_Cus_Btn.gridwidth = 2;
+	    gbc_Edit_Cus_Btn.insets = new Insets(0, 0, 0, 5);
+	    gbc_Edit_Cus_Btn.gridx = 0;
+	    gbc_Edit_Cus_Btn.gridy = 9;
+	    panel.add(Edit_Cus_Btn, gbc_Edit_Cus_Btn);
+	    Edit_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+	    Edit_Cus_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int r = table.getSelectedRow();
+				if(r != -1) {
+					int r_model = table.convertRowIndexToModel(r);
+					int id = (int) tableModel.getValueAt(r_model, 0);
+					String name = Cus_Name.getText();
+					LocalDate date = LocalDate.parse(Cus_Birth.getText());
+					String address = Cus_Address.getText();
+					String phone = Cus_Phone.getText();
+					Customer cus = new Customer(id, name, date, address, phone);
+					try {
+						cDAO.updateCustomerInTable(cus);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					cDAO.updateCustomerInList(cus);
+					tableModel.fireTableDataChanged();
+				}
+			}
+		});
 	    table.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -268,31 +309,6 @@ public class Customer_Manager extends JFrame {
 				Cus_Phone.setText((String) tableModel.getValueAt(r_model, 4));
 			}
 		});
-	    Edit_Cus_Btn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				int r = table.getSelectedRow();
-				if(r != -1) {
-					int r_model = table.convertRowIndexToModel(r);
-					int id = (int) tableModel.getValueAt(r_model, 0);
-					String name = Cus_Name.getText();
-					LocalDate date = LocalDate.parse(Cus_Birth.getText());
-					String address = Cus_Address.getText();
-					String phone = Cus_Phone.getText();
-					Customer cus = new Customer(id, name, date, address, phone);
-					try {
-						cDAO.updateCustomerInTable(cus);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					cDAO.updateCustomerInList(cus);
-					tableModel.fireTableDataChanged();
-				}
-			}
-		});
 	}
 	public Customer_Manager(User user) throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Customer Manager");
@@ -311,7 +327,7 @@ public class Customer_Manager extends JFrame {
 		cDAO.loadDataToList();
 		tableModel = new CustomerModel(cDAO);
 	    table = new JTable(tableModel);
-	    table.setFont(new Font("Constantia", Font.PLAIN, 15));
+	    table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	    table.setAutoCreateRowSorter(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(0, 0, 800, 400);
@@ -330,15 +346,19 @@ public class Customer_Manager extends JFrame {
 	    JButton Back_Main_Interface = new JButton("Back");
 	    Top_Pane.add(Back_Main_Interface, BorderLayout.EAST);
 	    
-	    //Bot Pane
-	    JPanel Bot_Pane = new JPanel();
-	    contentPane.add(Bot_Pane, BorderLayout.SOUTH);
-	    Bot_Pane.setLayout(new GridLayout(0, 1, 40, 0));
-	    
-	    JButton Edit_Cus_Btn = new JButton("Edit Profile");
-	    Edit_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-	    Bot_Pane.add(Edit_Cus_Btn);
-	    
+	    ImageIcon Back_Icon = new ImageIcon("img/Back_Icon.png");
+	    Back_Main_Interface.setIcon(Back_Icon);
+		
+		JPanel Offset_Top = new JPanel();
+		FlowLayout fl_Offset_Top = (FlowLayout) Offset_Top.getLayout();
+		fl_Offset_Top.setVgap(3);
+		Top_Pane.add(Offset_Top, BorderLayout.NORTH);
+		
+		JPanel Offset_Bot = new JPanel();
+		FlowLayout fl_Offset_Bot = (FlowLayout) Offset_Bot.getLayout();
+		fl_Offset_Bot.setVgap(3);
+		Top_Pane.add(Offset_Bot, BorderLayout.SOUTH);
+		
 	    //Infomation Pane
 	    JPanel Sale_Pane = new JPanel();
 	    contentPane.add(Sale_Pane, BorderLayout.EAST);
@@ -358,7 +378,7 @@ public class Customer_Manager extends JFrame {
 	    Sale_Pane.add(panel, gbc_panel);
 	    GridBagLayout gbl_panel = new GridBagLayout();
 	    gbl_panel.columnWidths = new int[] {80, 80};
-	    gbl_panel.rowHeights = new int[] {30, 20, 30, 20, 30, 20, 30, 20, 30};
+	    gbl_panel.rowHeights = new int[] {30, 20, 30, 20, 30, 20, 30, 20, 30, 40};
 	    gbl_panel.columnWeights = new double[]{0.0, 0.0};
 	    gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 	    panel.setLayout(gbl_panel);
@@ -448,6 +468,17 @@ public class Customer_Manager extends JFrame {
 	    gbc_Cus_Phone.gridx = 0;
 	    gbc_Cus_Phone.gridy = 8;
 	    panel.add(Cus_Phone, gbc_Cus_Phone);
+	    
+	    JButton Edit_Cus_Btn = new JButton("Edit Profile");
+	    GridBagConstraints gbc_Edit_Cus_Btn = new GridBagConstraints();
+	    gbc_Edit_Cus_Btn.anchor = GridBagConstraints.SOUTH;
+	    gbc_Edit_Cus_Btn.gridwidth = 2;
+	    gbc_Edit_Cus_Btn.insets = new Insets(0, 0, 0, 5);
+	    gbc_Edit_Cus_Btn.gridx = 0;
+	    gbc_Edit_Cus_Btn.gridy = 9;
+	    panel.add(Edit_Cus_Btn, gbc_Edit_Cus_Btn);
+	    Edit_Cus_Btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+	    
 	    table.addMouseListener(new MouseListener() {
 			
 			@Override

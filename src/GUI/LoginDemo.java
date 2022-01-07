@@ -56,7 +56,7 @@ public class LoginDemo extends JFrame implements ActionListener {
         gbc_lblNewLabel.gridx = 1;
         gbc_lblNewLabel.gridy = 0;
         panel.add(lblNewLabel, gbc_lblNewLabel);
-        ImageIcon Log_Icon = new ImageIcon("img/Log_Icon.png");
+       ImageIcon Log_Icon = new ImageIcon("img/Log_Icon.png");
         lblNewLabel.setIcon(Log_Icon);
       
         // User
