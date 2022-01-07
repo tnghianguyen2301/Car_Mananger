@@ -76,9 +76,10 @@ public class Application extends JFrame {
 	 * @throws SQLException 
 	 */
 	public Application() throws ClassNotFoundException, IOException, SQLException {
+		setBackground(new Color(255, 255, 255));
 		setTitle("Car Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 970, 450);
+		setBounds(100, 100, 970, 485);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,7 +94,7 @@ public class Application extends JFrame {
 		  cpDAO.loadDataCarToList();
 		  tableModel = new CarProductsModel(cpDAO);
 	      table = new JTable(tableModel);
-	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
 	      scrollPane.setBounds(0, 0, 800, 400);
@@ -105,13 +106,14 @@ public class Application extends JFrame {
 		contentPane.add(Bot_Pane, BorderLayout.SOUTH);
 		GridBagLayout gbl_Bot_Pane = new GridBagLayout();
 		gbl_Bot_Pane.columnWidths = new int[] {120, 120, 120, 120, 180};
-		gbl_Bot_Pane.rowHeights = new int[] {20, 20, 20};
+		gbl_Bot_Pane.rowHeights = new int[] {35, 20, 50};
 		gbl_Bot_Pane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
 		gbl_Bot_Pane.rowWeights = new double[]{0.0, 0.0, 0.0};
 		Bot_Pane.setLayout(gbl_Bot_Pane);
 		
 		JLabel lblStatus = new JLabel("Status");
 		GridBagConstraints gbc_lblStatus = new GridBagConstraints();
+		gbc_lblStatus.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblStatus.insets = new Insets(0, 0, 5, 5);
 		gbc_lblStatus.gridx = 0;
 		gbc_lblStatus.gridy = 0;
@@ -119,6 +121,7 @@ public class Application extends JFrame {
 		
 		JLabel lblTrademark = new JLabel("Trademark");
 		GridBagConstraints gbc_lblTrademark = new GridBagConstraints();
+		gbc_lblTrademark.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblTrademark.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTrademark.gridx = 1;
 		gbc_lblTrademark.gridy = 0;
@@ -126,6 +129,7 @@ public class Application extends JFrame {
 		
 		JLabel lblType = new JLabel("Type");
 		GridBagConstraints gbc_lblType = new GridBagConstraints();
+		gbc_lblType.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblType.insets = new Insets(0, 0, 5, 5);
 		gbc_lblType.gridx = 2;
 		gbc_lblType.gridy = 0;
@@ -133,6 +137,7 @@ public class Application extends JFrame {
 		
 		JLabel lblColor = new JLabel("Color");
 		GridBagConstraints gbc_lblColor = new GridBagConstraints();
+		gbc_lblColor.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblColor.insets = new Insets(0, 0, 5, 5);
 		gbc_lblColor.gridx = 3;
 		gbc_lblColor.gridy = 0;
@@ -140,6 +145,7 @@ public class Application extends JFrame {
 		
 		JLabel lblName = new JLabel("Name");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
+		gbc_lblName.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblName.gridx = 4;
 		gbc_lblName.gridy = 0;
@@ -195,7 +201,7 @@ public class Application extends JFrame {
 		
 		//Name
 		Filter_Name = new JTextField();
-		Filter_Name.setFont(new Font("Arial", Font.BOLD, 15));
+		Filter_Name.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_Filter_Name = new GridBagConstraints();
 		gbc_Filter_Name.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Filter_Name.insets = new Insets(0, 0, 5, 5);
@@ -209,6 +215,7 @@ public class Application extends JFrame {
 		Apply_Btn.setForeground(new Color(0, 153, 255));
 		Apply_Btn.setFont(new Font("Arial", Font.BOLD, 15));
 		GridBagConstraints gbc_Apply_Btn = new GridBagConstraints();
+		gbc_Apply_Btn.anchor = GridBagConstraints.NORTH;
 		gbc_Apply_Btn.gridwidth = 2;
 		gbc_Apply_Btn.insets = new Insets(5, 0, 0, 5);
 		gbc_Apply_Btn.gridx = 2;
@@ -220,9 +227,9 @@ public class Application extends JFrame {
 		contentPane.add(Top_Pane, BorderLayout.NORTH);
 		GridBagLayout gbl_Top_Pane = new GridBagLayout();
 		gbl_Top_Pane.columnWidths = new int[] {50, 43, 70, 56, 100};
-		gbl_Top_Pane.rowHeights = new int[] {30, 0};
+		gbl_Top_Pane.rowHeights = new int[] {50};
 		gbl_Top_Pane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
-		gbl_Top_Pane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_Top_Pane.rowWeights = new double[]{0.0};
 		Top_Pane.setLayout(gbl_Top_Pane);
 		
 		JLabel lblNameUser = new JLabel("Name:");
@@ -259,14 +266,18 @@ public class Application extends JFrame {
 		Top_Pane.add(Role, gbc_Role);
 		
 		//Manage Button
-		JButton Manage_Btn = new JButton("Manage");
+		JButton Manage_Btn = new JButton("Manager");
 		Manage_Btn.setVisible(false);
-		Manage_Btn.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 11));
+		Manage_Btn.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 13));
 		GridBagConstraints gbc_Manage_Btn = new GridBagConstraints();
+		gbc_Manage_Btn.anchor = GridBagConstraints.WEST;
+		gbc_Manage_Btn.insets = new Insets(0, 5, 0, 0);
 		gbc_Manage_Btn.gridx = 4;
 		gbc_Manage_Btn.gridy = 0;
 		Top_Pane.add(Manage_Btn, gbc_Manage_Btn);
 	    this.setPreferredSize(new Dimension(800, 600));
+        ImageIcon Manager_Icon = new ImageIcon(this.getClass().getResource("/Manager_Icon.png"));
+        Manage_Btn.setIcon(Manager_Icon);
 	    
 	  //Sale Pane
 	    JPanel Sale_Pane = new JPanel();
@@ -458,7 +469,7 @@ public class Application extends JFrame {
 	public Application(User user) throws ClassNotFoundException, IOException, SQLException {
 		setTitle("Car Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 970, 450);
+		setBounds(100, 100, 970, 485);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -473,134 +484,144 @@ public class Application extends JFrame {
 		  cpDAO.loadDataCarToList();
 		  tableModel = new CarProductsModel(cpDAO);
 	      table = new JTable(tableModel);
+<<<<<<< HEAD
 	      table.setFont(new Font("Constantia", Font.PLAIN, 15));
+=======
+	      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+>>>>>>> branch 'master' of https://github.com/nhocwhy05/Car_Mananger
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
 	      scrollPane.setBounds(0, 0, 800, 400);
 	      scrollPane.setPreferredSize(new Dimension(800, 400));
 	      contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		//Bot Pane (Filter)
-		JPanel Bot_Pane = new JPanel();
-		contentPane.add(Bot_Pane, BorderLayout.SOUTH);
-		GridBagLayout gbl_Bot_Pane = new GridBagLayout();
-		gbl_Bot_Pane.columnWidths = new int[] {120, 120, 120, 120, 180};
-		gbl_Bot_Pane.rowHeights = new int[] {20, 20, 20};
-		gbl_Bot_Pane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
-		gbl_Bot_Pane.rowWeights = new double[]{0.0, 0.0, 0.0};
-		Bot_Pane.setLayout(gbl_Bot_Pane);
-		
-		JLabel lblStatus = new JLabel("Status");
-		GridBagConstraints gbc_lblStatus = new GridBagConstraints();
-		gbc_lblStatus.insets = new Insets(0, 0, 5, 5);
-		gbc_lblStatus.gridx = 0;
-		gbc_lblStatus.gridy = 0;
-		Bot_Pane.add(lblStatus, gbc_lblStatus);
-		
-		JLabel lblTrademark = new JLabel("Trademark");
-		GridBagConstraints gbc_lblTrademark = new GridBagConstraints();
-		gbc_lblTrademark.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTrademark.gridx = 1;
-		gbc_lblTrademark.gridy = 0;
-		Bot_Pane.add(lblTrademark, gbc_lblTrademark);
-		
-		JLabel lblType = new JLabel("Type");
-		GridBagConstraints gbc_lblType = new GridBagConstraints();
-		gbc_lblType.insets = new Insets(0, 0, 5, 5);
-		gbc_lblType.gridx = 2;
-		gbc_lblType.gridy = 0;
-		Bot_Pane.add(lblType, gbc_lblType);
-		
-		JLabel lblColor = new JLabel("Color");
-		GridBagConstraints gbc_lblColor = new GridBagConstraints();
-		gbc_lblColor.insets = new Insets(0, 0, 5, 5);
-		gbc_lblColor.gridx = 3;
-		gbc_lblColor.gridy = 0;
-		Bot_Pane.add(lblColor, gbc_lblColor);
-		
-		JLabel lblName = new JLabel("Name");
-		GridBagConstraints gbc_lblName = new GridBagConstraints();
-		gbc_lblName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblName.gridx = 4;
-		gbc_lblName.gridy = 0;
-		Bot_Pane.add(lblName, gbc_lblName);
-		
-		//Status
-		JComboBox Filter_Status = new JComboBox();
-		Filter_Status.setForeground(Color.BLACK);
-		Filter_Status.setFont(new Font("Arial", Font.BOLD, 13));
-		Filter_Status.setModel(new DefaultComboBoxModel(new String[] {"All", "New", "Old"}));
-		GridBagConstraints gbc_Filter_Status = new GridBagConstraints();
-		gbc_Filter_Status.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Filter_Status.insets = new Insets(0, 0, 5, 5);
-		gbc_Filter_Status.gridx = 0;
-		gbc_Filter_Status.gridy = 1;
-		Bot_Pane.add(Filter_Status, gbc_Filter_Status);
-		
-		//Trademark
-		JComboBox Filter_Trademark = new JComboBox();
-		Filter_Trademark.setForeground(Color.BLACK);
-		Filter_Trademark.setFont(new Font("Arial", Font.BOLD, 13));
-		Filter_Trademark.setModel(new DefaultComboBoxModel(new String[] {"All", "Honda", "Toyota", "Mazda", "Mitsubishi", "Hyundai", "Kia", "Others"}));
-		GridBagConstraints gbc_Filter_Trademark = new GridBagConstraints();
-		gbc_Filter_Trademark.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Filter_Trademark.insets = new Insets(0, 0, 5, 5);
-		gbc_Filter_Trademark.gridx = 1;
-		gbc_Filter_Trademark.gridy = 1;
-		Bot_Pane.add(Filter_Trademark, gbc_Filter_Trademark);
-		
-		//Type
-		JComboBox Filter_Type = new JComboBox();
-		Filter_Type.setForeground(Color.BLACK);
-		Filter_Type.setFont(new Font("Arial", Font.BOLD, 13));
-		Filter_Type.setModel(new DefaultComboBoxModel(new String[] {"All", "Sedan", "HatchBack", "SUV", "Crossover", "MPV", "Pickup", "Others"}));
-		GridBagConstraints gbc_Filter_Type = new GridBagConstraints();
-		gbc_Filter_Type.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Filter_Type.insets = new Insets(0, 0, 5, 5);
-		gbc_Filter_Type.gridx = 2;
-		gbc_Filter_Type.gridy = 1;
-		Bot_Pane.add(Filter_Type, gbc_Filter_Type);
-		
-		//Color
-		JComboBox Filter_Color = new JComboBox();
-		Filter_Color.setModel(new DefaultComboBoxModel(new String[] {"All", "White", "Black", "Gray", "Silver", "Blue", "Red", "Brown", "Yellow", "Green", "Others"}));
-		Filter_Color.setForeground(Color.BLACK);
-		Filter_Color.setFont(new Font("Arial", Font.BOLD, 13));
-		GridBagConstraints gbc_Filter_Color = new GridBagConstraints();
-		gbc_Filter_Color.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Filter_Color.insets = new Insets(0, 0, 5, 5);
-		gbc_Filter_Color.gridx = 3;
-		gbc_Filter_Color.gridy = 1;
-		Bot_Pane.add(Filter_Color, gbc_Filter_Color);
-		
-		//Name
-		Filter_Name = new JTextField();
-		Filter_Name.setFont(new Font("Arial", Font.BOLD, 15));
-		GridBagConstraints gbc_Filter_Name = new GridBagConstraints();
-		gbc_Filter_Name.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Filter_Name.insets = new Insets(0, 0, 5, 5);
-		gbc_Filter_Name.gridx = 4;
-		gbc_Filter_Name.gridy = 1;
-		Bot_Pane.add(Filter_Name, gbc_Filter_Name);
-		Filter_Name.setColumns(10);
-		
-		//Apply Button
-		JButton Apply_Btn = new JButton("Apply Filter");
-		Apply_Btn.setForeground(new Color(0, 153, 255));
-		Apply_Btn.setFont(new Font("Arial", Font.BOLD, 15));
-		GridBagConstraints gbc_Apply_Btn = new GridBagConstraints();
-		gbc_Apply_Btn.gridwidth = 2;
-		gbc_Apply_Btn.insets = new Insets(5, 0, 0, 5);
-		gbc_Apply_Btn.gridx = 2;
-		gbc_Apply_Btn.gridy = 2;
-		Bot_Pane.add(Apply_Btn, gbc_Apply_Btn);
+	    //Bot Pane (Filter)
+			JPanel Bot_Pane = new JPanel();
+			contentPane.add(Bot_Pane, BorderLayout.SOUTH);
+			GridBagLayout gbl_Bot_Pane = new GridBagLayout();
+			gbl_Bot_Pane.columnWidths = new int[] {120, 120, 120, 120, 180};
+			gbl_Bot_Pane.rowHeights = new int[] {35, 20, 50};
+			gbl_Bot_Pane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+			gbl_Bot_Pane.rowWeights = new double[]{0.0, 0.0, 0.0};
+			Bot_Pane.setLayout(gbl_Bot_Pane);
+			
+			JLabel lblStatus = new JLabel("Status");
+			GridBagConstraints gbc_lblStatus = new GridBagConstraints();
+			gbc_lblStatus.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_lblStatus.insets = new Insets(0, 0, 5, 5);
+			gbc_lblStatus.gridx = 0;
+			gbc_lblStatus.gridy = 0;
+			Bot_Pane.add(lblStatus, gbc_lblStatus);
+			
+			JLabel lblTrademark = new JLabel("Trademark");
+			GridBagConstraints gbc_lblTrademark = new GridBagConstraints();
+			gbc_lblTrademark.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_lblTrademark.insets = new Insets(0, 0, 5, 5);
+			gbc_lblTrademark.gridx = 1;
+			gbc_lblTrademark.gridy = 0;
+			Bot_Pane.add(lblTrademark, gbc_lblTrademark);
+			
+			JLabel lblType = new JLabel("Type");
+			GridBagConstraints gbc_lblType = new GridBagConstraints();
+			gbc_lblType.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_lblType.insets = new Insets(0, 0, 5, 5);
+			gbc_lblType.gridx = 2;
+			gbc_lblType.gridy = 0;
+			Bot_Pane.add(lblType, gbc_lblType);
+			
+			JLabel lblColor = new JLabel("Color");
+			GridBagConstraints gbc_lblColor = new GridBagConstraints();
+			gbc_lblColor.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_lblColor.insets = new Insets(0, 0, 5, 5);
+			gbc_lblColor.gridx = 3;
+			gbc_lblColor.gridy = 0;
+			Bot_Pane.add(lblColor, gbc_lblColor);
+			
+			JLabel lblName = new JLabel("Name");
+			GridBagConstraints gbc_lblName = new GridBagConstraints();
+			gbc_lblName.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_lblName.insets = new Insets(0, 0, 5, 5);
+			gbc_lblName.gridx = 4;
+			gbc_lblName.gridy = 0;
+			Bot_Pane.add(lblName, gbc_lblName);
+			
+			//Status
+			JComboBox Filter_Status = new JComboBox();
+			Filter_Status.setForeground(Color.BLACK);
+			Filter_Status.setFont(new Font("Arial", Font.BOLD, 13));
+			Filter_Status.setModel(new DefaultComboBoxModel(new String[] {"All", "New", "Old"}));
+			GridBagConstraints gbc_Filter_Status = new GridBagConstraints();
+			gbc_Filter_Status.fill = GridBagConstraints.HORIZONTAL;
+			gbc_Filter_Status.insets = new Insets(0, 0, 5, 5);
+			gbc_Filter_Status.gridx = 0;
+			gbc_Filter_Status.gridy = 1;
+			Bot_Pane.add(Filter_Status, gbc_Filter_Status);
+			
+			//Trademark
+			JComboBox Filter_Trademark = new JComboBox();
+			Filter_Trademark.setForeground(Color.BLACK);
+			Filter_Trademark.setFont(new Font("Arial", Font.BOLD, 13));
+			Filter_Trademark.setModel(new DefaultComboBoxModel(new String[] {"All", "Honda", "Toyota", "Mazda", "Mitsubishi", "Hyundai", "Kia", "Others"}));
+			GridBagConstraints gbc_Filter_Trademark = new GridBagConstraints();
+			gbc_Filter_Trademark.fill = GridBagConstraints.HORIZONTAL;
+			gbc_Filter_Trademark.insets = new Insets(0, 0, 5, 5);
+			gbc_Filter_Trademark.gridx = 1;
+			gbc_Filter_Trademark.gridy = 1;
+			Bot_Pane.add(Filter_Trademark, gbc_Filter_Trademark);
+			
+			//Type
+			JComboBox Filter_Type = new JComboBox();
+			Filter_Type.setForeground(Color.BLACK);
+			Filter_Type.setFont(new Font("Arial", Font.BOLD, 13));
+			Filter_Type.setModel(new DefaultComboBoxModel(new String[] {"All", "Sedan", "HatchBack", "SUV", "Crossover", "MPV", "Pickup", "Others"}));
+			GridBagConstraints gbc_Filter_Type = new GridBagConstraints();
+			gbc_Filter_Type.fill = GridBagConstraints.HORIZONTAL;
+			gbc_Filter_Type.insets = new Insets(0, 0, 5, 5);
+			gbc_Filter_Type.gridx = 2;
+			gbc_Filter_Type.gridy = 1;
+			Bot_Pane.add(Filter_Type, gbc_Filter_Type);
+			
+			//Color
+			JComboBox Filter_Color = new JComboBox();
+			Filter_Color.setModel(new DefaultComboBoxModel(new String[] {"All", "White", "Black", "Gray", "Silver", "Blue", "Red", "Brown", "Yellow", "Green", "Others"}));
+			Filter_Color.setForeground(Color.BLACK);
+			Filter_Color.setFont(new Font("Arial", Font.BOLD, 13));
+			GridBagConstraints gbc_Filter_Color = new GridBagConstraints();
+			gbc_Filter_Color.fill = GridBagConstraints.HORIZONTAL;
+			gbc_Filter_Color.insets = new Insets(0, 0, 5, 5);
+			gbc_Filter_Color.gridx = 3;
+			gbc_Filter_Color.gridy = 1;
+			Bot_Pane.add(Filter_Color, gbc_Filter_Color);
+			
+			//Name
+			Filter_Name = new JTextField();
+			Filter_Name.setFont(new Font("Tahoma", Font.BOLD, 15));
+			GridBagConstraints gbc_Filter_Name = new GridBagConstraints();
+			gbc_Filter_Name.fill = GridBagConstraints.HORIZONTAL;
+			gbc_Filter_Name.insets = new Insets(0, 0, 5, 5);
+			gbc_Filter_Name.gridx = 4;
+			gbc_Filter_Name.gridy = 1;
+			Bot_Pane.add(Filter_Name, gbc_Filter_Name);
+			Filter_Name.setColumns(10);
+			
+			//Apply Button
+			JButton Apply_Btn = new JButton("Apply Filter");
+			Apply_Btn.setForeground(new Color(0, 153, 255));
+			Apply_Btn.setFont(new Font("Arial", Font.BOLD, 15));
+			GridBagConstraints gbc_Apply_Btn = new GridBagConstraints();
+			gbc_Apply_Btn.anchor = GridBagConstraints.NORTH;
+			gbc_Apply_Btn.gridwidth = 2;
+			gbc_Apply_Btn.insets = new Insets(5, 0, 0, 5);
+			gbc_Apply_Btn.gridx = 2;
+			gbc_Apply_Btn.gridy = 2;
+			Bot_Pane.add(Apply_Btn, gbc_Apply_Btn);
 		
 		//Top Pane (Info user)
 		JPanel Top_Pane = new JPanel();
 		contentPane.add(Top_Pane, BorderLayout.NORTH);
 		GridBagLayout gbl_Top_Pane = new GridBagLayout();
 		gbl_Top_Pane.columnWidths = new int[] {50, 43, 70, 56, 100};
-		gbl_Top_Pane.rowHeights = new int[] {30, 0};
+		gbl_Top_Pane.rowHeights = new int[] {50};
 		gbl_Top_Pane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
 		gbl_Top_Pane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		Top_Pane.setLayout(gbl_Top_Pane);
@@ -639,20 +660,24 @@ public class Application extends JFrame {
 		Top_Pane.add(Role, gbc_Role);
 		
 		//Manage Button
-		JButton Manage_Btn = new JButton("Manage");
+		JButton Manage_Btn = new JButton("Manager");
 		if(user.getRole().compareTo("Manager") ==0) {
 			Manage_Btn.setVisible(true);
 		}
 		else {
 			Manage_Btn.setVisible(false);
 		}
-		Manage_Btn.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 11));
+		Manage_Btn.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 13));
 		GridBagConstraints gbc_Manage_Btn = new GridBagConstraints();
+		gbc_Manage_Btn.anchor = GridBagConstraints.WEST;
+		gbc_Manage_Btn.insets = new Insets(0, 5, 0, 0);
 		gbc_Manage_Btn.gridx = 4;
 		gbc_Manage_Btn.gridy = 0;
 		Top_Pane.add(Manage_Btn, gbc_Manage_Btn);
 	    this.setPreferredSize(new Dimension(800, 600));
-	    
+        ImageIcon Manager_Icon = new ImageIcon(this.getClass().getResource("/Manager_Icon.png"));
+        Manage_Btn.setIcon(Manager_Icon);
+        
 	  //Sale Pane
 	    JPanel Sale_Pane = new JPanel();
 	    contentPane.add(Sale_Pane, BorderLayout.EAST);
