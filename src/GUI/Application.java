@@ -93,7 +93,7 @@ public class Application extends JFrame {
 		  cpDAO.loadDataCarToList();
 		  tableModel = new CarProductsModel(cpDAO);
 	      table = new JTable(tableModel);
-	      table.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+	      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	      table.setAutoCreateRowSorter(true);
 	      JScrollPane scrollPane = new JScrollPane(table);
 	      scrollPane.setBounds(0, 0, 800, 400);
