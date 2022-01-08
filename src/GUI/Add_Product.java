@@ -456,5 +456,20 @@ public class Add_Product extends JFrame {
 	  				dispose();
 			}
 		});
+		Back_Btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new Manage(Add_Product.this.user);
+				} catch (ClassNotFoundException | IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(true);
+				dispose();
+			}
+		});
 	}
 }

@@ -627,7 +627,7 @@ public class Application extends JFrame {
 				Top_Pane.add(lblNameUser, gbc_lblNameUser);
 				
 				//Name
-				JLabel User_Name = new JLabel("User_Variable");
+				JLabel User_Name = new JLabel(user.getName());
 				User_Name.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 				GridBagConstraints gbc_User_Name = new GridBagConstraints();
 				gbc_User_Name.insets = new Insets(0, 5, 0, 5);
@@ -644,7 +644,7 @@ public class Application extends JFrame {
 				Top_Pane.add(lblRole, gbc_lblRole);
 				
 				//Role
-				JLabel Role = new JLabel("Role_Variable");
+				JLabel Role = new JLabel(user.getRole());
 				Role.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
 				GridBagConstraints gbc_Role = new GridBagConstraints();
 				gbc_Role.insets = new Insets(0, 5, 0, 5);
