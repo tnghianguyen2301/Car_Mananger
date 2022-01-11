@@ -22,7 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableRowSorter;
 
 import DAO.CarHistoryModel;
 import DAO.CarProductsDAO;
@@ -800,44 +802,44 @@ public class Application extends JFrame {
      * Apply Filter Button click even
      * Su ly khi nhan Apply filter
      */
-	    Apply_Btn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String status = Filter_Status.getSelectedItem().toString();
-				String type = Filter_Type.getSelectedItem().toString();
-				String color = Filter_Color.getSelectedItem().toString();
-				String trademark = Filter_Trademark.getSelectedItem().toString();
-				String name = Filter_Name.getText();
-				try {
-					DBConnection.init("database.properties");
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				  try {
-					Connection conn = DBConnection.getConnection();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				  try {
-					cpDAO.loadDataFilter(status, type, color, trademark, name);
-					 tableModel = new CarProductsModel(cpDAO);
-				      table = new JTable(tableModel);
-				      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				      table.setAutoCreateRowSorter(true);
-				      JScrollPane scrollPane = new JScrollPane(table);
-				      scrollPane.setBounds(0, 0, 800, 400);
-				      scrollPane.setPreferredSize(new Dimension(800, 400));
-				      contentPane.add(scrollPane, BorderLayout.CENTER);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-			}
-		});
+//	    Apply_Btn.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				String status = Filter_Status.getSelectedItem().toString();
+//				String type = Filter_Type.getSelectedItem().toString();
+//				String color = Filter_Color.getSelectedItem().toString();
+//				String trademark = Filter_Trademark.getSelectedItem().toString();
+//				String name = Filter_Name.getText();
+//				try {
+//					DBConnection.init("database.properties");
+//				} catch (ClassNotFoundException | IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				  try {
+//					Connection conn = DBConnection.getConnection();
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				  try {
+//					cpDAO.loadDataFilter(status, type, color, trademark, name);
+//					 tableModel = new CarProductsModel(cpDAO);
+//				      table = new JTable(tableModel);
+//				      table.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+//				      table.setAutoCreateRowSorter(true);
+//				      JScrollPane scrollPane = new JScrollPane(table);
+//				      scrollPane.setBounds(0, 0, 800, 400);
+//				      scrollPane.setPreferredSize(new Dimension(800, 400));
+//				      contentPane.add(scrollPane, BorderLayout.CENTER);
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} 
+//			}
+//		});
 	    
 	    	Manage_Btn.addActionListener(new ActionListener() {
 			@Override
@@ -923,6 +925,19 @@ public class Application extends JFrame {
 						cpDAO.updateCarInList(id, "Sold Out");
 						tableModel.fireTableDataChanged();
 						}
+				}
+			});	
+	    	//Search
+	    	Apply_Btn.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					TableRowSorter<CarProductsModel> sorter = new TableRowSorter<CarProductsModel>(tableModel);
+					table.setRowSorter(sorter);
+					RowFilter< CarProductsModel, Object> filter = null;
+					filter = RowFilter.regexFilter(Filter_Name.getText(), 2);
+					sorter.setRowFilter(filter);
 				}
 			});
 	}

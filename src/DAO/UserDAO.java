@@ -99,8 +99,8 @@ public class UserDAO {
 			int id = result.getInt(1);
 			String userName = result.getString(2);
 			String password = result.getString(3);
-			String email = result.getString(4);
-			String name = result.getString(5);
+			String name = result.getString(4);
+			String email = result.getString(5);
 			String role = result.getString(6);
 			current_user = new User(id, userName, password, email, name, role);
 		}
