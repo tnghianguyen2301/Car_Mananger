@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -874,7 +875,11 @@ public class Application extends JFrame {
 					String phone = Cus_Phone.getText();
 					Customer cus = new Customer(id, name, date, address, phone);
 					try {
-						cDAO.saveCustomerInTable(cus);
+						//cDAO.saveCustomerInTable(cus);
+						if(cDAO.saveCustomerInTable(cus)) {
+							JOptionPane.showMessageDialog(null,
+									"Save information succesfully");
+						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
