@@ -878,7 +878,7 @@ public class Application extends JFrame {
 						//cDAO.saveCustomerInTable(cus);
 						if(cDAO.saveCustomerInTable(cus)) {
 							JOptionPane.showMessageDialog(null,
-									"Save information succesfully");
+									"Save information succesfullyyy");
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
